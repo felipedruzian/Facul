@@ -3,7 +3,7 @@
 
  Atualmente estudando: 
  * **Algoritmos e Programação:**
- - Fluxogramas
- - Logica de programação em C
+   * Fluxogramas
+   * Logica de programação em C
         
 
