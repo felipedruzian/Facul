@@ -9,3 +9,15 @@ d. O sistema deverá apresentar a descrição e valor unitário do produto de ma
 e. O sistema deverá apresentar o valor médio por compra;
 f. Caso o usuário ultrapasse o limite de compras, o sistema deverá apresentar o valor negativo deste cliente.
 */
+#include <stdio.h>
+#include <stdlib.h>
+#include <strings.h>
+
+int main()
+{
+    
+    
+
+    system("pause");
+    return 0;
+}
