@@ -15,8 +15,53 @@ f. Caso o usuário ultrapasse o limite de compras, o sistema deverá apresentar 
 
 int main()
 {
+    // variaveis
+    float ValorLimiteCompras;
+    int x = 1; //quantidade de produtos
+    int y = x-1; //numero do produto
+    int QuantidadeDoProduto;
+    float ValorDoProduto[x];
+    char codigo[x][16], descricao[x][32];
+    //int QuantidadeDeProdutos, QuantidadeDoProduto;
+    //char ListaProdutos [QuantidadeDeProdutos][32];
+
+    // inicialização
+    printf("----------- // Programa de Compras \\ ----------\n");
+    printf("Informe o valor maximo de compras: ");
+    scanf("%f", &ValorLimiteCompras);
+    printf("\n");
     
+    // entrada
+    printf("Compras: \n\n");
+    while (ValorLimiteCompras > 0)
+    {
+        printf("Valor Disponivel: %.2f \n", ValorLimiteCompras);
+        printf("Digite o nome ou descricao do produto: ");
+        scanf("%s", &descricao[y]);
+        printf("Insira o codigo do produto: ");
+        scanf("%s", &codigo[y]);
+        printf("Digite a quantidade do produto: ");
+        scanf("%i", &QuantidadeDoProduto);
+        printf("Insira o valor do produto: ");
+        scanf("%f", &ValorDoProduto[y]);
+        printf("\n");
+
+        ValorLimiteCompras = ValorLimiteCompras - QuantidadeDoProduto * ValorDoProduto[y];
+        x++;
+    }
+
+    // saida
+    if (ValorLimiteCompras <= 0) 
+    {
+
+        printf("%.2f \n", ValorLimiteCompras);
+        printf("fim do programa! \n");
+
+    }
     
+
+
+
 
     system("pause");
     return 0;
