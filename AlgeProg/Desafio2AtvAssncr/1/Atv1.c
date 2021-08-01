@@ -17,14 +17,12 @@ int main()
 {
     // variaveis
     float ValorLimiteCompras;
-    int x = 5; //quantidade de produtos
+    int x = 1; //quantidade de produtos
     int y = 0; //numero do produto
-    int QuantidadeDoProduto;
+    int QuantidadeDoProduto[x];
     float ValorDoProduto[x];
     char codigo[x][16], descricao[x][32];
-    //int QuantidadeDeProdutos, QuantidadeDoProduto;
-    //char ListaProdutos [QuantidadeDeProdutos][32];
-
+    
     // inicialização
     printf("----------- // Programa de Compras \\ ----------\n");
     printf("Informe o valor maximo de compras: ");
@@ -41,12 +39,12 @@ int main()
         //printf("Insira o codigo do produto: ");
         //scanf("%s", &codigo[y]);
         printf("Digite a quantidade do produto: ");
-        scanf("%i", &QuantidadeDoProduto);
+        scanf("%i", &QuantidadeDoProduto[y]);
         printf("Insira o valor do produto: ");
         scanf("%f", &ValorDoProduto[y]);
         printf("\n");
 
-        ValorLimiteCompras = ValorLimiteCompras - QuantidadeDoProduto * ValorDoProduto[y];
+        ValorLimiteCompras = ValorLimiteCompras - QuantidadeDoProduto[y] * ValorDoProduto[y];
         x++;
         y++;
     }
@@ -54,21 +52,17 @@ int main()
     // saida
     if (ValorLimiteCompras <= 0) 
     {
-        
-        printf("%i , %i \n", x, y);
+        //printf("%i , %i \n", x, y);
         printf("%.2f \n", ValorLimiteCompras);
         for (int z = 0; z < y; z++){
-            printf("%f \n", ValorDoProduto[z]);
+            printf("%.2f \n", ValorDoProduto[z]);
         }
-        
-        printf("\nFim do programa! \n");
-
     }
     
 
 
 
-
+    printf("\nFim do programa! \n");
     system("pause");
     return 0;
 }
