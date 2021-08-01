@@ -17,8 +17,8 @@ int main()
 {
     // variaveis
     float ValorLimiteCompras;
-    int x = 1; //quantidade de produtos
-    int y = x-1; //numero do produto
+    int x = 5; //quantidade de produtos
+    int y = 0; //numero do produto
     int QuantidadeDoProduto;
     float ValorDoProduto[x];
     char codigo[x][16], descricao[x][32];
@@ -38,8 +38,8 @@ int main()
         printf("Valor Disponivel: %.2f \n", ValorLimiteCompras);
         printf("Digite o nome ou descricao do produto: ");
         scanf("%s", &descricao[y]);
-        printf("Insira o codigo do produto: ");
-        scanf("%s", &codigo[y]);
+        //printf("Insira o codigo do produto: ");
+        //scanf("%s", &codigo[y]);
         printf("Digite a quantidade do produto: ");
         scanf("%i", &QuantidadeDoProduto);
         printf("Insira o valor do produto: ");
@@ -48,14 +48,20 @@ int main()
 
         ValorLimiteCompras = ValorLimiteCompras - QuantidadeDoProduto * ValorDoProduto[y];
         x++;
+        y++;
     }
-
+    
     // saida
     if (ValorLimiteCompras <= 0) 
     {
-
+        
+        printf("%i , %i \n", x, y);
         printf("%.2f \n", ValorLimiteCompras);
-        printf("fim do programa! \n");
+        for (int z = 0; z < y; z++){
+            printf("%f \n", ValorDoProduto[z]);
+        }
+        
+        printf("\nFim do programa! \n");
 
     }
     
