@@ -22,8 +22,10 @@ minimizar o total de notas e moedas fornecidas.
 int main()
 {
     //variaveis
-    int n2, n5, n10, n20, n50, n100, n200;
-    float m01, m05, m10, m25, m50, m1;
+    int m01, m05, m10, m25, m50, m1, n2, n5, n10, n20, n50, n100, n200;
+    m01=m05=m10=m25=m50=m1=n2=n5=n10=n20=n50=n100=n200=0;
+    float moedas[6] = {1, 0.50, 0.25, 0.10, 0.05, 0.01};
+    float notas[7] = {200, 100, 50, 20, 10, 5, 2};
     float valorproduto, valorpago;
     
     //inicio
@@ -43,6 +45,21 @@ int main()
     }
 
     //troco
+    if(valorpago > valorproduto) {
+
+        while (valorpago - valorproduto >= notas[0]) {
+            valorpago = valorpago - 200;
+            n200++;
+        }
+        
+        printf("\nTroco em notas: \n");
+        printf("2, 5, 10, 20, 50, 100, 200\n");
+        printf("%i, %i, %i, %i, %i, %i, %i\n", n2, n5, n10, n20, n50, n100, n200);
+
+        printf("Troco em modeas: \n");
+        printf("0.01, 0.05, 0.10, 0.25, 0.50, 1.00\n");
+        printf("%i, %i, %i, %i, %i, %i\n", m01, m05, m10, m25, m50, m1);
+    }
     
 
     
