@@ -26,7 +26,7 @@ int main()
     //m01=m05=m10=m25=m50=m1=n2=n5=n10=n20=n50=n100=n200=0;
     float moedas[6] = {1, 0.50, 0.25, 0.10, 0.05, 0.01};
     float notas[7] = {200, 100, 50, 20, 10, 5, 2};
-    float valorproduto, valorpago;
+    float valorproduto, valorpago, trocototal;
     
     //inicio
     printf("Insira o valor do produto que deseja: ");
@@ -45,6 +45,8 @@ int main()
     }
 
     //troco
+    trocototal = valorpago - valorproduto;
+
     if(valorpago > valorproduto) {
         //troco das notas
         for (n200=0; valorpago - valorproduto >= notas[0]; n200++) {
@@ -76,14 +78,28 @@ int main()
         for (m01=0; valorpago - valorproduto >= moedas[5]; m01++) {
             valorpago -= moedas[5]; }
 
-        //saida dos trocos
-        printf("\nTroco em notas: \n");
-        printf("2, 5, 10, 20, 50, 100, 200\n");
-        printf("%i, %i, %i, %i, %i, %i, %i\n", n2, n5, n10, n20, n50, n100, n200);
+        
+    //saida dos trocos        
+    printf("\nTroco em notas: \n\n");
+        if(n2>0){printf("Quantidade de notas de 2: %i\n",n2);}
+        if(n5>0){printf("Quantidade de notas de 5: %i\n",n5);}
+        if(n10>0){printf("Quantidade de notas de 10: %i\n",n10);}
+        if(n20>0){printf("Quantidade de notas de 20: %i\n",n20);}
+        if(n50>0){printf("Quantidade de notas de 50: %i\n",n50);}
+        if(n100>0){printf("Quantidade de notas de 100: %i\n",n100);}
+        if(n200>0){printf("Quantidade de notas de 200: %i \n",n200);} 
 
-        printf("Troco em modeas: \n");
-        printf("0.01, 0.05, 0.10, 0.25, 0.50, 1.00\n");
-        printf("%i, %i, %i, %i, %i, %i\n", m01, m05, m10, m25, m50, m1);
+
+    printf("\nTroco em modeas: \n\n");
+        if(m01>0){printf("Quantidade de moedas de 1 centavo: %i \n",m01);}
+        if(m05>0){printf("Quantidade de moedas de 5 centavos: %i \n",m05);}
+        if(m10>0){printf("Quantidade de moedas de 10 centavos: %i \n",m10);}
+        if(m25>0){printf("Quantidade de moedas de 25 centavos: %i \n",m25);}
+        if(m50>0){printf("Quantidade de moedas de 50 centavos: %i \n",m50);}
+        if(m1>0){printf("Quantidade de moedas de 1 real: %i \n",m1);}
+    
+    printf("\nTroco total: %.2f\n", trocototal);
+    
     }
     
     printf("\nFim do programa! \n");
