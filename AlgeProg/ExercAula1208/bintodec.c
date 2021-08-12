@@ -6,6 +6,7 @@ e realize a conversão deste para decimal
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int main()
 {
@@ -13,7 +14,7 @@ int main()
     int bin[8], dec[8], num=0;
 
     //entrada
-    printf("Digite um numero em binario dde 8bits: \n");
+    printf("Digite um numero em binario de 8 bits: \n");
     for (int i = 7; i > -1; i--) {
         scanf("%i", &bin[i]);
     }
