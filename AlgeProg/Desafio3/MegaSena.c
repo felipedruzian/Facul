@@ -20,7 +20,7 @@ c. Carregar as apostas e valores do sorteio em uma matriz e apresentar na tela e
 int main()
 {
     //Variaveis
-    int i, u, a=0, ap1[6], ap2[6], sort[6];
+    int i, u, a=0, ap1[6], ap2[6], sort[6], matriz[3][6];
 
     printf("\t------// Mega Sena \\------\n\n");
 
@@ -92,13 +92,17 @@ int main()
         }
     }
 
+    for (i = 0; i < 6; i++)
+    {
+        matriz[0][i]=ap1[i];
+        matriz[1][i]=ap2[i];
+        matriz[2][i]=sort[i];
+    }
+    
+
 
     //Saida
 
-    printf("\n\nNumeros sorteados: ");
-    for (i = 0; i < 6; i++) {
-        printf("\t %i", sort[i]);
-    }
     printf("\nNumeros da Aposta 1: ");
     for (i = 0; i < 6; i++) {
         printf("\t %i", ap1[i]);
@@ -107,12 +111,26 @@ int main()
     for (i = 0; i < 6; i++) {
         printf("\t %i", ap2[i]);
     }
+    printf("\n\nNumeros sorteados: ");
+    for (i = 0; i < 6; i++) {
+        printf("\t %i", sort[i]);
+    }
     printf("\nTotal de acertos: %i", a);
     
 
+    printf("\n\nMatriz dos numeros: \n");
+    for (i = 0; i < 3; i++)
+    {
+        for (u = 0; u < 6; u++)
+        {
+            printf("%i \t", matriz[i][u]);
+        }
+        printf("\n");
+    }
+    
 
     
-    printf("\nFim do Programa!\n");
+    printf("\n\nFim do Programa!\n");
     system("pause");
     return 0;
 }
