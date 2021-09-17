@@ -26,7 +26,7 @@ int main()
     while (menu != 3)
     {
     
-    printf("\n*** MENU***\n");
+    printf("\n\n*** MENU***\n");
     printf("1. Inserir valor\n");
     printf("2. Listar Valores\n");
     printf("3. Sair\n");
@@ -36,23 +36,27 @@ int main()
         switch (menu)
         {
         case 1:
-            
+            printf("Digite 0 para voltar ao menu!\n");
             while (stop != 0)
             {
                 printf("\nInforme o valor [%i]: ", i+1);
                 scanf("%f", &valores[i]); 
-                stop = valores[i];
-                u = i;
-                i++;
+                if (valores[i] == 0)
+                {
+                    stop = valores[i];
+                }else{
+                    i++;
+                    u = i;
+                }
             }
+            stop=1;
             break;
-            
             
 
         case 2:
             printf("\nNumeros digitados: \n");
             for (i = 0; i < u; i++) {
-                printf("\n\t %f.1 \t", valores[i]);
+                printf("\nValor [%i]:\t %.1f \t", i+1, valores[i]);
             }
             break;
 
