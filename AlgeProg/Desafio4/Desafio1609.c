@@ -15,6 +15,10 @@ Requisitos:
 
 #include <stdio.h>
 #include <stdlib.h>
+#define VERMELHO    "\x1b[31m"
+#define VERDE       "\x1b[32m"
+#define AZUL        "\x1b[34m"
+#define RESET       "\x1b[0m"
 
 int main()
 {
@@ -26,7 +30,7 @@ int main()
     while (menu != 3)
     {
     
-    printf("\n\n*** MENU***\n");
+    printf("\n\n"VERDE"*** MENU***"RESET"\n");
     printf("1. Inserir valor\n");
     printf("2. Listar Valores\n");
     printf("3. Sair\n");
