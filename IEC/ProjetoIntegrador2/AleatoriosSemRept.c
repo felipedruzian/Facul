@@ -5,7 +5,7 @@
 #define VALIDO   1
 #define INVALIDO 0
 
-int contaSorteados=0;
+int contaSorteados=0, numSorteado;
 int numSorteados[99];
 int i=0;
 
@@ -41,7 +41,7 @@ int Sorteio(int x) {
 }
 
 void sorteiaEnter() {
-    int tecla, numSorteado, x;
+    int tecla, x;
     
     printf("Pressione enter para sortear um numero | Numeros ja sorteados: %i\n",contaSorteados);
     do{
