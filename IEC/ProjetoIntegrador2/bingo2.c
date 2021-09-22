@@ -11,6 +11,9 @@ jogo antes de finalizar o programa.*/
 #include<string.h>
 #include<time.h>
 
+#define VALIDO   1
+#define INVALIDO 0
+
 //cores
 #define VERMELHO    "\x1b[31m"
 #define VERDE       "\x1b[32m"
@@ -20,9 +23,38 @@ jogo antes de finalizar o programa.*/
 #define CIANO       "\033[96m"
 #define RESET       "\x1b[0m"
 
-int players,numSorteado,x,y,z,i,contaAcertos[4],aux=0,contaSorteados=0;
+int players,numSorteado,x,y,z,i,contaAcertos[4],aux=0,contaSorteados=0,numSorteados[99],proxSort;
 char cartela[4][5][5],player1[5][5],player2[5][5],player3[5][5],player4[5][5];
 
+int Sorteio(int x) {
+    
+    int status;
+
+    while(proxSort < contaSorteados) {
+
+        do {
+            numSorteados[proxSort] = (rand() % 98)+1;
+            status = VALIDO;
+            for (int j = 0; j < proxSort; j++) {
+                if (numSorteados[proxSort] == numSorteados[j]) {
+                    status = INVALIDO;
+                }
+            }
+        } while (status == INVALIDO);   
+
+        /*print pra ver o vetor inteiro dos numeros ja sorteados
+        for (int u = 0; u <= proxSort; u++)
+        {
+            printf("%d ", numSorteados[u]);
+        }
+        */
+       
+       x = numSorteados[proxSort];
+       proxSort++;
+    }
+    
+    return x;
+}
 char geraMatriz(char i){
     for (x=0; x<5; x++){
         for (y=0; y<5; y++){
@@ -210,16 +242,19 @@ char confereAcerto(char i){
     return 0;
 }
 int sorteiaEnter(int i) {
-    int tecla;
+    int tecla, x;
+    
+    printf("Pressione enter para sortear um numero | Numeros ja sorteados: %i\n",contaSorteados);
     do{
         tecla = getchar();
         if (tecla !=13) {
             //conta numeros sorteados
             contaSorteados+=1;
-            printf("Pressione enter para sortear um numero | Numeros ja sorteados: %i\n",contaSorteados);
+            printf("Pressione enter para sortear um novo numero | Numeros ja sorteados: %i\n",contaSorteados);
+        
         // sorteio
-        numSorteado = 1+ (rand()%99);
-        printf("\n\nO numero sorteado foi: "VERMELHO "%i""\n\n" RESET,numSorteado);
+        numSorteado = Sorteio(x);
+        printf("\n\nO numero sorteado foi: %i\n\n",numSorteado);
         //fim sorteio
         //conferencia
         if(i==1){
