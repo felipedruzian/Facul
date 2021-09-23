@@ -25,7 +25,7 @@ jogo antes de finalizar o programa.*/
 #define INVALIDO 0
 
 //Variaveis globais
-int players, numSorteados[99], contaSorteados=0, proxSorteado=0, numSorteado;
+int players, numSorteados[99], contaSorteados=0, proxSorteado=0, numSorteado, contaAcertos[4];
 char cartela[4][5][5];
 
 
@@ -54,7 +54,158 @@ int Sorteio(int x) {
     }
     return x;
 }
-void sorteiaEnter() {
+int confereAcertos (int i) {
+    
+    switch (i)
+    {
+    case 1:
+        for (int x=0; x<i;x++) {
+            for (int y=0; y<5; y++) {
+               for (int z=0; z<5; z++) {
+                    if(cartela[x][y][z]==numSorteado) {
+                        cartela[x][y][z]=0;
+                        contaAcertos[x]+=1;
+                    }
+                }
+            }
+        }
+        printf(AMARELO "============ CARTELA P1 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+              printf("%i \t",cartela[0][x][y]);
+            }
+            printf("\n");
+        }
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P1: %i\n",contaAcertos[0]);
+    break;
+    
+    case 2:
+        for (int x=0; x<i;x++) {
+            for (int y=0; y<5; y++) {
+               for (int z=0; z<5; z++) {
+                    if(cartela[x][y][z]==numSorteado) {
+                        cartela[x][y][z]=0;
+                        contaAcertos[x]+=1;
+                    }
+                }
+            }
+        }
+        printf(AMARELO "============ CARTELA P1 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                printf("%i \t",cartela[0][x][y]);
+            }
+            printf("\n");
+        }
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P1: %i\n",contaAcertos[0]);
+        printf(AZUL "============ CARTELA P2 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                printf("%i \t",cartela[1][x][y]);
+            }
+            printf("\n");
+        }
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P2: %i\n",contaAcertos[1]);
+    break;
+    
+    case 3:
+        for (int x=0; x<i;x++) {
+            for (int y=0; y<5; y++) {
+               for (int z=0; z<5; z++) {
+                    if(cartela[x][y][z]==numSorteado) {
+                        cartela[x][y][z]=0;
+                        contaAcertos[x]+=1;
+                    }
+                }
+            }
+        }
+        printf(AMARELO "============ CARTELA P1 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                printf("%i \t",cartela[0][x][y]);
+            }
+            printf("\n");
+        }
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P1: %i\n",contaAcertos[0]);
+        printf(AZUL "============ CARTELA P2 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                printf("%i \t",cartela[1][x][y]);
+            }
+            printf("\n");
+        }
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P1: %i\n",contaAcertos[1]);
+        printf(MAGENTA "============ CARTELA P3 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                printf("%i \t",cartela[2][x][y]);
+            }
+            printf("\n");
+        }
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P1: %i\n",contaAcertos[2]);
+    break;
+
+    case 4:
+        for (int x=0; x<i;x++) {
+            for (int y=0; y<5; y++) {
+                for (int z=0; z<5; z++) {
+                    if(cartela[x][y][z]==numSorteado) {
+                    cartela[x][y][z]=0;
+                    contaAcertos[x]+=1;
+                    }
+                }
+            }
+        }
+    
+        
+        printf(AMARELO "============ CARTELA P1 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                printf("%i \t",cartela[0][x][y]);
+            }
+            printf("\n");
+        }
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P1: %i\n",contaAcertos[0]);
+        printf(AZUL "============ CARTELA P2 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                printf("%i \t",cartela[1][x][y]);
+            }
+            printf("\n");
+        }  
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P1: %i\n",contaAcertos[1]);
+        printf(MAGENTA "============ CARTELA P3 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                printf("%i \t",cartela[2][x][y]);
+            }
+            printf("\n");
+        }
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P1: %i\n",contaAcertos[2]);
+        printf(CIANO "============ CARTELA P4 ============\n");
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                printf("%i \t",cartela[3][x][y]);
+            }
+            printf("\n");
+        }
+        printf("============ ********** ============" RESET "\n");
+        printf("Acerto do P1: %i\n",contaAcertos[3]);
+    break;
+
+    }
+    return 0;
+}
+int sorteiaEnter(int i) {
     int tecla, x;
     
     printf("Pressione enter para sortear um numero | Numeros ja sorteados: %i\n",contaSorteados);
@@ -73,11 +224,12 @@ void sorteiaEnter() {
             printf("\nO numero sorteado foi: %i\n\n",numSorteado);
             //fim sorteio
 
+            confereAcertos(players);
         }
     } 
-    //return 0;
+    return 0;
 }
-char geraMatriz(char i){
+char geraMatriz(char i) {
     i-=1;
     for (int x=0; x<5; x++){
         for (int y=0; y<5; y++){
@@ -89,14 +241,14 @@ char geraMatriz(char i){
             if(x==2 && y==2){
                 printf("X \t",cartela[i][x][y]);
             }else{
-            printf("%i \t",cartela[i][x][y]);
+                printf("%i \t",cartela[i][x][y]);
             }
         }
         printf("\n");
     }
     return 0;
 }
-void mensagem_importante(){
+void mensagem_importante() {
     system("cls");
     do
     {
@@ -115,7 +267,6 @@ void mensagem_importante(){
     }while(players>4 || players <1);
 }
 
-
 int main() {
 
     mensagem_importante();
@@ -130,7 +281,8 @@ int main() {
             printf("============ ********** ============" RESET "\n");
             printf(VERMELHO "***************** COMECANDO SORTEIO *****************" RESET "\n");
 
-            sorteiaEnter();
+            sorteiaEnter(players);
+            
         break;
         case 2:
             system("cls");
@@ -143,7 +295,8 @@ int main() {
             printf("============ ********** ============" RESET "\n");
             printf(VERMELHO "***************** COMECANDO SORTEIO *****************" RESET "\n");
 
-            //sorteiaEnter(2);
+            sorteiaEnter(players);
+            
         break;
         case 3:
             system("cls");
@@ -159,7 +312,8 @@ int main() {
             printf("============ ********** ============" RESET "\n");
             printf(VERMELHO "***************** COMECANDO SORTEIO *****************" RESET "\n");
 
-            //sorteiaEnter(3);
+            sorteiaEnter(players);
+            
         break;
         case 4: 
             system("cls");
@@ -178,7 +332,8 @@ int main() {
             printf("============ ********** ============" RESET "\n");
             printf(VERMELHO "***************** COMECANDO SORTEIO *****************" RESET "\n");
             
-            //sorteiaEnter(4);
+            sorteiaEnter(players);
+            
         break;
     }
     system("pause");
