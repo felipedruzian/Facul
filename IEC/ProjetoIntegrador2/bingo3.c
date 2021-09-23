@@ -25,7 +25,7 @@ jogo antes de finalizar o programa.*/
 #define INVALIDO 0
 
 //Variaveis globais
-int players, numSorteados[99], contaSorteados=0, proxSorteado=0, numSorteado, contaAcertos[4], BINGO[4], winner[4];
+int players, numSorteados[99], contaSorteados=0, proxSorteado=0, numSorteado, contaAcertos[4], BINGO[4]={0,0,0,0}, winner[4]={0,0,0,0};
 char cartela[4][5][5];
 
 
@@ -303,7 +303,7 @@ int sorteiaEnter(int i) {
     printf("Pressione enter para sortear um numero | Numeros ja sorteados: %i\n",contaSorteados);
     scanf("%c", &tecla);
     
-    while(winner[0]!=1 || winner[1]!=1 || winner[2]!=1 || winner[3]!=1){
+    while(winner[0]!=1 && winner[1]!=1 && winner[2]!=1 && winner[3]!=1){
         tecla = getchar();
         if (tecla !=13) {
             
