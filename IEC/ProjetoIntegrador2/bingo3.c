@@ -125,6 +125,9 @@ int confereAcertos (int i) {
                     }else if (cartela[x][0][0]==0 && cartela[x][1][1]==0 && cartela[x][2][2]==0 && cartela[x][3][3]==0 && cartela[x][4][4]==0) {
                         BINGO[x]=1;
                         winner[x]=1;
+                    }else if (cartela[x][0][4]==0 && cartela[x][1][3]==0 && cartela[x][2][2]==0 && cartela[x][3][1]==0 && cartela[x][4][0]==0) {
+                        BINGO[x]=1;
+                        winner[x]=1;
                     }
                 }
             }
@@ -176,6 +179,9 @@ int confereAcertos (int i) {
                         BINGO[x]=1;
                         winner[x]=1;
                     }else if (cartela[x][0][0]==0 && cartela[x][1][1]==0 && cartela[x][2][2]==0 && cartela[x][3][3]==0 && cartela[x][4][4]==0) {
+                        BINGO[x]=1;
+                        winner[x]=1;
+                    }else if (cartela[x][0][4]==0 && cartela[x][1][3]==0 && cartela[x][2][2]==0 && cartela[x][3][1]==0 && cartela[x][4][0]==0) {
                         BINGO[x]=1;
                         winner[x]=1;
                     }
@@ -241,6 +247,9 @@ int confereAcertos (int i) {
                         BINGO[x]=1;
                         winner[x]=1;
                     }else if (cartela[x][0][0]==0 && cartela[x][1][1]==0 && cartela[x][2][2]==0 && cartela[x][3][3]==0 && cartela[x][4][4]==0) {
+                        BINGO[x]=1;
+                        winner[x]=1;
+                    }else if (cartela[x][0][4]==0 && cartela[x][1][3]==0 && cartela[x][2][2]==0 && cartela[x][3][1]==0 && cartela[x][4][0]==0) {
                         BINGO[x]=1;
                         winner[x]=1;
                     }
