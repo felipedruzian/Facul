@@ -452,8 +452,8 @@ int main() {
     
     }
 
-
-
+    system("cls");
+    printf(VERMELHO"Fim de jogo!\n"RESET);
     system("pause");
     return 0;
 }
