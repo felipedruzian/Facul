@@ -25,7 +25,7 @@ jogo antes de finalizar o programa.*/
 #define INVALIDO 0
 
 //Variaveis globais
-int players, numSorteados[99], contaSorteados=0, proxSorteado=0, numSorteado, contaAcertos[4], BINGO[4]={0,0,0,0}, winner[4]={0,0,0,0};
+int players, numSorteados[99], contaSorteados=0, proxSorteado=0, numSorteado, contaAcertos[4]={0,0,0,0}, BINGO[4]={0,0,0,0}, winner[4]={0,0,0,0}, gameover=0;
 char cartela[4][5][5];
 
 
@@ -81,8 +81,7 @@ int confereAcertos (int i) {
                     }else if (cartela[x][0][0]==0 && cartela[x][1][1]==0 && cartela[x][2][2]==0 && cartela[x][3][3]==0 && cartela[x][4][4]==0) {
                         BINGO[x]=1;
                         winner[x]=1;
-                    }
-                    else if (cartela[x][0][4]==0 && cartela[x][1][3]==0 && cartela[x][2][2]==0 && cartela[x][3][1]==0 && cartela[x][4][0]==0) {
+                    }else if (cartela[x][0][4]==0 && cartela[x][1][3]==0 && cartela[x][2][2]==0 && cartela[x][3][1]==0 && cartela[x][4][0]==0) {
                         BINGO[x]=1;
                         winner[x]=1;
                     }
@@ -310,7 +309,7 @@ int sorteiaEnter(int i) {
     while(winner[0]!=1 && winner[1]!=1 && winner[2]!=1 && winner[3]!=1){
         tecla = getchar();
         if (tecla !=13) {
-            
+            system("cls");
             //conta numeros sorteados
             contaSorteados+=1;
             printf("Pressione enter para sortear um novo numero | Numeros ja sorteados: %i\n",contaSorteados);
@@ -364,9 +363,12 @@ void mensagem_importante() {
 
 int main() {
 
-    mensagem_importante();
     srand(time(NULL));
-    
+   
+    while (gameover == 0) {
+
+    mensagem_importante();
+        
     switch (players){
         case 1:
             system("cls");
@@ -431,6 +433,27 @@ int main() {
             
         break;
     }
+    printf(VERMELHO "\t=========== ********** ===========\n");
+    printf("Deseja reiniciar o jogo? (0=SIM - 1=NAO): "RESET);
+    scanf("%i", &gameover);
+
+    if (gameover == 0) {
+        for (int i = 0; i < 4; i++) {
+            BINGO[i]=0;
+            winner[i]=0;
+            contaAcertos[i]=0;
+        }
+        for (int i = 0; i < 99; i++) {
+            numSorteados[i]=0;
+        }
+        contaSorteados=0;
+        proxSorteado=0;
+    }
+    
+    }
+
+
+
     system("pause");
     return 0;
 }
