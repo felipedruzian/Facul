@@ -1,5 +1,5 @@
 // Trabalho 02 - Listas encadeadas
-// Felipe Barreto Druzian - felipedruzian.aluno@unipampa.edu.br
+/* Felipe Barreto Druzian - felipedruzian.aluno@unipampa.edu.br */
 
 #include <stdio.h>
 #include <stdlib.h>
