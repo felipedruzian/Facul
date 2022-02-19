@@ -11,7 +11,6 @@ FILE *arquivo;
 int main()
 {
     int dec[10], bin[10][10], t=0;
-    char nl[2] = ".";
 
     for (int i = 0; i < 10; i++)
     {
@@ -60,7 +59,7 @@ int main()
             }
         }
         //printf("\n\n");
-        fprintf(arquivo, "%s\n", nl);
+        fprintf(arquivo, "\n");
     }
 
     fclose(arquivo);
