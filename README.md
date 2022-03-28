@@ -2,7 +2,7 @@
  Esse repositório é para salvar os Códigos e Projetos feitos por mim durante a minha graduação de Engenharia da Computação.
 
  Atualmente estudando: 
-* Férias heheh
+* Férias² heheh
    
  Concluído:
 * **Algoritmos e Programação:** (AlgeProg)
@@ -20,3 +20,23 @@
 
 * **Introdução a Engenharia da Computação:** (IEC)
   * Dois projetos de AlgeProg em grupo.
+
+* **Estrutura de Dados:** (EstrutDados)
+  * Ponteiros e alocação dinâmica de memória.
+  * Structs e recursividade.
+  * Tipos abstratos de dados.
+  * Listas lineares.
+  * Listas simplesmente encadeadas.
+  * Listas duplamente encadeadas.
+  * Pilhas, filas e deques.
+  * Árvores: Conceitos, tipos, representação.
+  * Árvores binárias.
+  * Árvores balanceadas: AVL.
+
+* **Laboratório de Programação I:** ()
+  * Estruturas compostas do tipo registro (struct) e manipulação de dados.
+  * Uniões (Union) e uso do comando typedef.
+  * Recursividade: funções, condição de parada.
+  * Arquivos de texto em disco: declaração, funções de abertura, fechamento, leitura e escrita.
+  * Arquivos binários em disco: declaração, funções de abertura, fechamento, leitura e escrita.
+  * Construção de bibliotecas em linguagem de alto nível/TADs.
