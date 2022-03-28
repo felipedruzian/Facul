@@ -33,7 +33,7 @@
   * Árvores binárias.
   * Árvores balanceadas: AVL.
 
-* **Laboratório de Programação I:** ()
+* **Laboratório de Programação I:** (LabProg1)
   * Estruturas compostas do tipo registro (struct) e manipulação de dados.
   * Uniões (Union) e uso do comando typedef.
   * Recursividade: funções, condição de parada.
