@@ -2,7 +2,8 @@
  Esse repositório é para salvar os Códigos e Projetos feitos por mim durante a minha graduação de Engenharia da Computação.
 
  Atualmente estudando: 
-* Férias² heheh
+* Pesquisa e Classificação de Dados
+* Laboratório de Programação II
    
  Concluído:
 * **Algoritmos e Programação:** (AlgeProg)
