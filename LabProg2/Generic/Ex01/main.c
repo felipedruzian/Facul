@@ -83,9 +83,8 @@ int main()
 
                 printf("Digite um numero: ");
                 scanf("%i", &d);
-                Ponto *deita;
-                deita->x = &d;
-                lgen_busca(phead, busca, deita);
+                
+                lgen_busca(phead, busca, &d);
 
                 fflush(stdin);
                 printf("\nPressione Enter para voltar. . . ");
