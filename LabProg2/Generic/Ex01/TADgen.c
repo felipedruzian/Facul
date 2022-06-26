@@ -1,5 +1,8 @@
+/* Lab. Prog II 2022/1 - Prova 1 - Felipe B Druzian & Gabriel Dalmazo */
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct listaGen
 {
@@ -44,4 +47,30 @@ ListaGen* lgen_free(ListaGen *head)
         free(aux);
     }
     return head;
+}
+
+void lgen_vazia(ListaGen *head, void (*cb)(void*))
+{
+    cb(head);
+}
+
+void lgen_remove(ListaGen *head, int (*cb)(void*, void*, void*), void *dado)
+{
+    ListaGen *p;
+    for (p=head; p!=NULL; p=p->prox)
+    {
+        int z = cb(p, p->info, dado);
+        if (z != 0)
+        {
+            ListaGen* q = head;
+            while (q->prox != p)
+            {
+                q=q->prox;
+            }
+            q->prox = p->prox;
+            free(p->info);
+            free(p);
+            p=NULL;
+        }
+    }
 }
