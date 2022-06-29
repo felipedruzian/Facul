@@ -63,7 +63,8 @@ int main()
 
                 eC1.Tag = iC1.Tam_Endereco - eC1.Index - eC1.Word_Offset - eC1.Byte_Offset;
 
-                iC1.Tam_Overhead = iC1.Num_Conjs * (iC1.Vias * (eC1.Tag + eC1.V_Bit + eC1.Dirt + eC1.LRU));
+                iC1.Tam_Overhead = iC1.Capac_Conj * (iC1.Vias * (eC1.Tag + eC1.V_Bit + eC1.Dirt + eC1.LRU));
+                iC1.Tam_Overhead /= 1024;
 
                 iC1.Tam_MemTotal = iC1.Capac_User + iC1.Tam_Overhead;
 
@@ -114,9 +115,9 @@ int main()
                 printf("%i\n", eC1.Tag);
 
                 printf("Tamanho do Overhead: ");
-                printf("%i\n", iC1.Tam_Overhead);
+                printf("%.2f\n", iC1.Tam_Overhead);
                 printf("Tamanho da Memoria Total: ");
-                printf("%i\n", iC1.Tam_MemTotal);
+                printf("%.2f\n", iC1.Tam_MemTotal);
 
                 fflush(stdin);
                 printf("\nPressione Enter para voltar. . . ");

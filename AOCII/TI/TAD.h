@@ -7,10 +7,9 @@ typedef struct info
     int Vias;
     int Capac_User;
     int Capac_Conj;
-    int Tam_Conj;
     int Num_Conjs;
-    int Tam_Overhead;
-    int Tam_MemTotal;
+    float Tam_Overhead;
+    float Tam_MemTotal;
 } INFO;
 
 typedef struct address
