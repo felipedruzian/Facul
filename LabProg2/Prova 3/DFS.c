@@ -55,7 +55,7 @@ int main()
                 printf("Digite vertices para conectar: ");
                 scanf("%i %i", &x, &y);
                 
-                g = adcAresta(g, x-1, y-1);
+                g = adcAresta(g, x, y);
 
                 fflush(stdin);
                 printf("\nPressione Enter para voltar. . . ");
