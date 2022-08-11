@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "TAD.h"
+#include "cache.h"
 
 int main()
 {
@@ -17,14 +17,14 @@ int main()
         printf("-----// MENU //-----\n");
         printf("1- Inicializacoes\n");
         printf("2- Printar Informacoes\n");
-        printf("3- \n");
-        printf("4- \n");
-        printf("5- \n");
+        printf("3- \n");    // --> vetor da cache e RAM     // como ler diferentes informacoes (cat?)
+        printf("4- \n");    // --> registradores do MIPS    // como relacionar a cache com registradores mips?
+        printf("5- \n");    // --> funcoes de instrucoes
         printf("6- Sair \n");
         printf("Opcao: ");
         fflush(stdin);
         scanf("%i", &opc);
-
+        
         switch (opc)
         {
         case 1:
@@ -32,7 +32,7 @@ int main()
             {
                 system("cls");
 
-                printf("Informe o numero de conjuntos da Cache de Nivel 1: ");
+                printf("Informe o numero de conjuntos da Cache de Nivel 1: "); // de 2 a 8  (8 recom.)
                 scanf("%i", &iC1.Num_Conjs);
                 //printf("Informe o numero de conjuntos da Cache de Nivel 2: ");
                 //scanf("%i", &iC2.Num_Conjs);
@@ -43,7 +43,7 @@ int main()
 
                 iC1.Tam_Bloco = iC1.Bytes_Palavra * iC1.Palavra_Bloco;
 
-                printf("Informe o numero de vias da Cache de Nivel 1: ");
+                printf("Informe o numero de vias da Cache de Nivel 1: "); // 1 a 2 recomendado
                 scanf("%i", &iC1.Vias);
                 
                 iC1.Capac_Conj = iC1.Vias * iC1.Tam_Bloco;
@@ -94,7 +94,7 @@ int main()
                 printf("%i\n", iC1.Num_Conjs);
                 printf("Capacidade do Usuario: ");
                 printf("%i\n\n", iC1.Capac_User);
-                printf("Tamanho do Endereço: ");
+                printf("Tamanho do Endereco: ");
                 printf("%i\n\n", iC1.Tam_Endereco);
 
 

@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 typedef struct info
 {
     int Tam_Endereco;
@@ -10,7 +7,6 @@ typedef struct info
     int Vias;
     int Capac_User;
     int Capac_Conj;
-    int Tam_Conj;
     int Num_Conjs;
     float Tam_Overhead;
     float Tam_MemTotal;
@@ -22,7 +18,7 @@ typedef struct address
     int Word_Offset;
     int Index;
     int Tag;
-    int V_Bit; 
+    int V_Bit;
     int LRU;
     int Dirt;
 } ADDR;
