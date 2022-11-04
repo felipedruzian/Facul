@@ -1,9 +1,8 @@
 # Projetos da Faculdade
  Esse repositório é para salvar os Códigos e Projetos feitos por mim durante a minha graduação de Engenharia da Computação.
 
- Atualmente estudando: 
-* Pesquisa e Classificação de Dados
-* Laboratório de Programação II
+ Atualmente estudando:
+* Programação Orientada a Objetos
    
  Concluído:
 * **Algoritmos e Programação:** (AlgeProg)
@@ -41,3 +40,26 @@
   * Arquivos de texto em disco: declaração, funções de abertura, fechamento, leitura e escrita.
   * Arquivos binários em disco: declaração, funções de abertura, fechamento, leitura e escrita.
   * Construção de bibliotecas em linguagem de alto nível/TADs.
+  
+* **Pesquisa e Classificação de Dados:**
+  * Análise de algoritmos; Medidas de desempenho e Classes de complexidade
+  * Métodos de ordenação: Bubble Sort
+  * Selection Sort e Insertion Sort
+  * Shell Sort
+  * Merge Sort
+  * Quick Sort
+  * Heap Sort e filas de prioridade
+  * Ordenação em tempo linear (Conting Sort, Bucket Sort e Radix Sort)
+  * Pesquisa Sequencial e Pesquisa Binária
+  * Tabelas Hash
+  * Compressão de Dados: Huffman, LZ77 e LZ78
+  
+  
+* **Laboratório de Programação II:**
+  * Ponteiros genéricos e estruturas genéricas
+  * Implementação de uma árvore AVL genérica
+  * Grafos: Algoritmos DFS e BFS
+  * Grafos: ordenação topológica e árvore de amplitude mínima (Kruskal e Prim)
+  * Grafos: algoritmos de menor caminho (Dijkstra)
+  * Criptografia: conceitos básicos, métodos.
+
