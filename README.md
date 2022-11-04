@@ -3,6 +3,7 @@
 
  Atualmente estudando:
 * Programação Orientada a Objetos
+* Microcontroladores
    
  Concluído:
 * **Algoritmos e Programação:** (AlgeProg)
