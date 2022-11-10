@@ -1,6 +1,7 @@
 *.zip
 *.pdf
 *.png
+.vscode
 Faculdade.workspace.code-workspace
 /AOC
 /AOCII/Mips_V12
