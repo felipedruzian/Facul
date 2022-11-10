@@ -1,7 +1,6 @@
 *.zip
 *.pdf
 *.png
-.vscode
 Faculdade.workspace.code-workspace
 /AOC
 /AOCII/Mips_V12
@@ -10,3 +9,4 @@ Faculdade.workspace.code-workspace
 /POO/MyJavaCoffee/.vscode
 /POO/MyJavaCoffee/bin
 /POO/MyJavaCoffee/lib
+/Microcontroladores/.vscode
