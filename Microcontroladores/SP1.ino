@@ -7,20 +7,34 @@
 #define pinG 5  //meio
 #define pinDP 6 //bolinha
 
+volatile int j = 0;
+
 void interrupt()
 {
-  turnOff();
-  delay(1000);
-  turnOn(); 
-  delay(1000);
-  turnOff();
-  delay(1000);
-  turnOn(); 
-  delay(1000);
-  turnOff();
-  delay(1000);
+  switch(j)
+  {
+    case 0:
+      turnH();
+      j++;
+      break;
+    case 1:
+      turnE();
+      j++;
+      break;
+    case 2:
+      turnL();
+      j++;
+      break;
+    case 3:
+      turnL();
+      j++;
+      break;
+    case 4:
+      turnO();
+      j=0;
+      break;
+  }
 }
-
 
 void turnOn()
 {
@@ -116,14 +130,5 @@ void setup()
 
 void loop()
 {
-    turnOn();
-    delay(1000);
-    turnH();
-    delay(1000);  
-    turnE();
-    delay(1000);
-    turnL();
-    delay(2000);
-    turnO();
-    delay(1000);
+    
 }
