@@ -219,27 +219,15 @@ void turnP()
     digitalWrite(pinDP, HIGH);
 }
 
-void turn0()
+void turn3()
 {
     digitalWrite(pinA, LOW);
     digitalWrite(pinB, LOW);
     digitalWrite(pinC, LOW);
     digitalWrite(pinD, LOW);
-    digitalWrite(pinE, LOW);
-    digitalWrite(pinF, LOW);
-    digitalWrite(pinG, HIGH);
-    digitalWrite(pinDP, HIGH);
-}
-
-void turn1()
-{
-    digitalWrite(pinA, HIGH);
-    digitalWrite(pinB, LOW);
-    digitalWrite(pinC, LOW);
-    digitalWrite(pinD, HIGH);
     digitalWrite(pinE, HIGH);
     digitalWrite(pinF, HIGH);
-    digitalWrite(pinG, HIGH);
+    digitalWrite(pinG, LOW);
     digitalWrite(pinDP, HIGH);
 }
 
@@ -255,66 +243,6 @@ void turn2()
     digitalWrite(pinDP, HIGH);
 }
 
-void turn3()
-{
-    digitalWrite(pinA, LOW);
-    digitalWrite(pinB, LOW);
-    digitalWrite(pinC, LOW);
-    digitalWrite(pinD, LOW);
-    digitalWrite(pinE, HIGH);
-    digitalWrite(pinF, HIGH);
-    digitalWrite(pinG, LOW);
-    digitalWrite(pinDP, HIGH);
-}
-
-void turn4()
-{
-    digitalWrite(pinA, HIGH);
-    digitalWrite(pinB, LOW);
-    digitalWrite(pinC, LOW);
-    digitalWrite(pinD, HIGH);
-    digitalWrite(pinE, HIGH);
-    digitalWrite(pinF, LOW);
-    digitalWrite(pinG, LOW);
-    digitalWrite(pinDP, HIGH);
-}
-
-void turn5()
-{
-    digitalWrite(pinA, LOW);
-    digitalWrite(pinB, HIGH);
-    digitalWrite(pinC, LOW);
-    digitalWrite(pinD, LOW);
-    digitalWrite(pinE, HIGH);
-    digitalWrite(pinF, LOW);
-    digitalWrite(pinG, LOW);
-    digitalWrite(pinDP, HIGH);
-}
-
-void turn6()
-{
-    digitalWrite(pinA, LOW);
-    digitalWrite(pinB, HIGH);
-    digitalWrite(pinC, LOW);
-    digitalWrite(pinD, LOW);
-    digitalWrite(pinE, LOW);
-    digitalWrite(pinF, LOW);
-    digitalWrite(pinG, LOW);
-    digitalWrite(pinDP, HIGH);
-}
-
-void turn7()
-{
-    digitalWrite(pinA, LOW);
-    digitalWrite(pinB, LOW);
-    digitalWrite(pinC, LOW);
-    digitalWrite(pinD, HIGH);
-    digitalWrite(pinE, HIGH);
-    digitalWrite(pinF, HIGH);
-    digitalWrite(pinG, HIGH);
-    digitalWrite(pinDP, HIGH);
-}
-
 void turn8()
 {
     digitalWrite(pinA, LOW);
@@ -327,18 +255,6 @@ void turn8()
     digitalWrite(pinDP, HIGH);
 }
 
-void turn9()
-{
-    digitalWrite(pinA, LOW);
-    digitalWrite(pinB, LOW);
-    digitalWrite(pinC, LOW);
-    digitalWrite(pinD, LOW);
-    digitalWrite(pinE, HIGH);
-    digitalWrite(pinF, LOW);
-    digitalWrite(pinG, LOW);
-    digitalWrite(pinDP, HIGH);
-}
-
 void InitialiseInterrupt(){
     cli();	// Desabilita interrupcoes  
     PCICR = 0;     //ou 0x01; Enable PCINT4 interrupt PINOS PCINT[7:0] (0) 
@@ -346,11 +262,43 @@ void InitialiseInterrupt(){
     sei();		        // Habilita interrupcoes
 }
 
-ISR(PCINT4_vect) {  //pcint?01234?_vect
+/*ISR(PCINT0_vect) {  //pcint?01234?_vect
     // Interrupt service routine. Every single PCINT8..14 (=ADC0..5) change
     // will generate an interrupt: but this will always be the same interrupt routine
-    turnH();
-    j=1;
+    forward();
+}
+*/
+
+
+void InitialiseTimer1()
+{
+    cli();
+    // Configuração do timer1 
+    TCCR1A = 0;                        //confira timer para operação normal pinos OC1A e OC1B desconectados
+    TCCR1B = 0;                        //limpa registrador
+    TIMSK1 |= (1 << TOIE1);           // habilita a interrupção do TIMER1
+    //---------------SEM PRESCALER--------------------------------------
+    TCCR1B = 1;                   // modo normal sem prescaler
+    TCNT1 = 0;
+    //SEM PRESCALER
+    // 65536 ciclos * 6.25e-08 (periodo do ciclo em s) =  0.004096 s
+    // 0.004096 s = 4.09ms tempo para interrupcao
+    // 10000 ms / 4.09 ms/interrupcao = +-245 
+    // 245 ciclos teremos 1S  
+    sei();
+}
+
+volatile int counter = 0;
+
+ISR(TIMER1_OVF_vect)                              //interrupção do TIMER1 
+{
+    //------SEM PRESCALER
+    if(counter == 245){
+        forward(); //inverte estado do led
+        counter = 0 ;
+    }
+    TCNT1 = 0;
+    counter++;
 }
 
 void setup()
@@ -367,7 +315,8 @@ void setup()
     pinMode(pinG, OUTPUT);
     pinMode(pinDP, OUTPUT);
 
-    InitialiseInterrupt();    
+    InitialiseInterrupt();
+    InitialiseTimer1();
 
     attachInterrupt(digitalPinToInterrupt(21), forward, RISING);
     attachInterrupt(digitalPinToInterrupt(20), backward, RISING);
