@@ -257,17 +257,17 @@ void turn8()
 
 void InitialiseInterrupt(){
     cli();	// Desabilita interrupcoes  
-    PCICR = 0;     //ou 0x01; Enable PCINT4 interrupt PINOS PCINT[7:0] (0) 
-    PCMSK0 = 4; //Seta a mascara para PCINT4 ?(PCINT0|PCINT1|PCINT2)
+    PCICR = 1;     //ou 0x01; Enable PCINT4 interrupt PINOS PCINT[7:0] (0) 
+    PCMSK0 = 16; // Seta a mascara para PCINT4 (0b10000)
     sei();		        // Habilita interrupcoes
 }
 
-/*ISR(PCINT0_vect) {  //pcint?01234?_vect
+ISR(PCINT0_vect) {  //pcint?01234?_vect
     // Interrupt service routine. Every single PCINT8..14 (=ADC0..5) change
     // will generate an interrupt: but this will always be the same interrupt routine
     forward();
 }
-*/
+
 
 
 void InitialiseTimer1()

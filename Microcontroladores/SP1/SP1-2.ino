@@ -71,43 +71,43 @@ void forward2()
     switch (i)
     {
     case 0:
-        turnn0();
-        i++;
-        break;
-    case 1:
         turnn1();
         i++;
         break;
-    case 2:
+    case 1:
         turnn2();
         i++;
         break;
-    case 3:
+    case 2:
         turnn3();
         i++;
         break;
-    case 4:
+    case 3:
         turnn4();
         i++;
         break;
-    case 5:
+    case 4:
         turnn5();
         i++;
         break;
-    case 6:
+    case 5:
         turnn6();
         i++;
         break;
-    case 7:
+    case 6:
         turnn7();
         i++;
         break;
-    case 8:
+    case 7:
         turnn8();
         i++;
         break;
-    case 9:
+    case 8:
         turnn9();
+        i++;
+        break;
+    case 9:
+        turnn0();
         i=0;
         break;
     }
@@ -357,11 +357,11 @@ void InitialiseTimer1()
 {
     cli();
     // Configuração do timer1 
-    TCCR1A = 0;                        //confira timer para operação normal pinos OC1A e OC1B desconectados
-    TCCR1B = 0;                        //limpa registrador
-    TIMSK1 |= (1 << TOIE1);           // habilita a interrupção do TIMER1
-    //---------------SEM PRESCALER--------------------------------------
-    TCCR1B = 1;                   // modo normal sem prescaler
+    TCCR1A = 0;  //confira timer para operação normal pinos OC1A e OC1B desconectados
+    TCCR1B = 0; //limpa registrador
+    TIMSK1 |= (1 << TOIE1); // habilita a interrupção do TIMER1
+    //--SEM PRESCALER--
+    TCCR1B = 1; // modo normal sem prescaler
     TCNT1 = 0;
     //SEM PRESCALER
     // 65536 ciclos * 6.25e-08 (periodo do ciclo em s) =  0.004096 s
@@ -371,17 +371,41 @@ void InitialiseTimer1()
     sei();
 }
 
-volatile int counter = 0;
-
-ISR(TIMER1_OVF_vect)                              //interrupção do TIMER1 
+void InitialiseTimer2()
 {
-    //------SEM PRESCALER
-    if(counter == 245){
-        forward2(); //inverte estado do led
-        counter = 0 ;
-    }
+    cli();
+    // Configuração do timer2 
+    TCCR2A = 0; //confira timer para operação normal pinos OC2A e OC2B desconectados
+    TCCR2B = 0; //limpa registrador
+    TIMSK2 |= (1 << TOIE2); // habilita a interrupção do TIMER2
+    //--SEM PRESCALER--
+    TCCR2B = 1; // modo normal sem prescaler
+    TCNT2 = 0; 
+    sei();
+}
+
+volatile int counter = 0;
+volatile int counter2 = 0;
+
+ISR(TIMER1_OVF_vect) //interrupção do TIMER1 
+{
     TCNT1 = 0;
     counter++;
+}
+
+ISR(TIMER2_OVF_vect) //interrupção do TIMER2 
+{
+    //--SEM PRESCALER--
+    if(counter2 == 2695){ 
+        forward2();
+        counter2 = 0;
+    }
+    if(counter == 245){
+        forward1(); //inverte estado do led
+        counter2 = counter2 + counter;
+        counter = 0;
+    }
+    TCNT2 = 0;
 }
 
 
@@ -404,7 +428,12 @@ void setup()
     pinMode(pin2G, OUTPUT);
     pinMode(pin2DP, OUTPUT);
 
+    turn0();
+    turnn0();
+
     InitialiseTimer1();
+    InitialiseTimer2();
+
 }
 
 void loop()
