@@ -1,5 +1,5 @@
 # Repositório da Faculdade
- Esse repositório é para salvar os códigos, projetos e trabalhos feitos por mim durante a minha graduação de Engenharia da Computação.
+ Esse repositório é destinado aos códigos, projetos e trabalhos feitos por mim, durante a minha graduação de Engenharia de Computação.
 
  📅 **Semestre atual:** ✅✅✅🔄⬛⬛⬛⬛⬛⬛ (4/10)
 
