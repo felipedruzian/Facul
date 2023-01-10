@@ -1,11 +1,13 @@
-# Projetos da Faculdade
- Esse repositório é para salvar os Códigos e Projetos feitos por mim durante a minha graduação de Engenharia da Computação.
+# Repositório da Faculdade
+ Esse repositório é destinado aos códigos, projetos e trabalhos feitos por mim, durante a minha graduação de Engenharia de Computação.
 
- Atualmente estudando:
+ 📅 **Semestre atual:** ✅✅✅🔄⬛⬛⬛⬛⬛⬛ (4/10)
+
+ 🔄 **Atualmente estudando:**
 * Programação Orientada a Objetos
 * Microcontroladores
    
- Concluído:
+ ✅ **Concluído:**
 * **Algoritmos e Programação:** (AlgeProg)
   * Logica de programação em Estrutura Algorítmica Sequencial.
   * Tipos de valores. Conceito e comportamento de variável.
@@ -42,7 +44,7 @@
   * Arquivos binários em disco: declaração, funções de abertura, fechamento, leitura e escrita.
   * Construção de bibliotecas em linguagem de alto nível/TADs.
   
-* **Pesquisa e Classificação de Dados:**
+* **Pesquisa e Classificação de Dados:** (PCD)
   * Análise de algoritmos; Medidas de desempenho e Classes de complexidade
   * Métodos de ordenação: Bubble Sort
   * Selection Sort e Insertion Sort
@@ -56,7 +58,7 @@
   * Compressão de Dados: Huffman, LZ77 e LZ78
   
   
-* **Laboratório de Programação II:**
+* **Laboratório de Programação II:** (LabProg2)
   * Ponteiros genéricos e estruturas genéricas
   * Implementação de uma árvore AVL genérica
   * Grafos: Algoritmos DFS e BFS
