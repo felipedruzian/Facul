@@ -1,5 +1,6 @@
 // Felipe Barreto Druzian - Prova 2 de POO - EC UNIPAMPA BAGE 2022/2
 
+//import java.util.Locale;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -9,15 +10,40 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GUI extends JFrame implements ActionListener {
+
+    //Locale localeBr = new Locale("pt", "BR");
     
+    private Container container;
+
+    private JTextField resposta;
+    private JRadioButton resposta1;
+    private JRadioButton resposta2;
+    private JRadioButton resposta3;
+    private JRadioButton resposta4;
+    private JCheckBox checkbox1;
+    private JCheckBox checkbox2;
+    private JCheckBox checkbox3;
+    private JCheckBox checkbox4;
+    private JCheckBox checkbox5;
+
+    private JLabel hitOrMiss;
+    private JLabel resp;
     private JButton buttonResp;
     private JButton buttonNext;
-    private String pergunta;
-    private String tipoPergunta;
+
+    private ArrayList<Pergunta> perguntas;
+    private ArrayList<String> tipoPerguntas;
+    private ArrayList<String> aU;
+    private String pergunta="";
+    private String tipoPergunta="";
+    private int contador=0;
+    private int numPs=0;
+    private int acertos=0;
+
 
     public GUI(){
         //Janela
-        Container container = getContentPane();
+        container = getContentPane();
         setSize(600,400);
         setResizable(false);
         setTitle("Questionário Java - Prova 2 POO");
@@ -26,16 +52,46 @@ public class GUI extends JFrame implements ActionListener {
         GridLayout gridLayout = new GridLayout(5,1,150,10);
         container.setLayout(gridLayout);
 
+        Questionario();
 
         //Adicionando os painéis ao container //ifs para cada painel
-        container.add(Painel0());
-        container.add(Painel1()); 
-        container.add(Painel0());
-        container.add(Painel2());
-        container.add(Painel5());
+        container();
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
 
+   
+    private void container(){
+
+        setPergunta(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador));
+
+        container.add(Painel0());
+        container.add(Painel1(pergunta, tipoPergunta)); 
+        container.add(Painel0());
+
+        if(tipoPergunta.equals("T")){
+            container.add(Painel2());
+        }
+        if(tipoPergunta.equals("U")){
+            container.add(Painel3(aU));
+        }
+
+        container.add(Painel5());
+        //contador++;
+
+
+        /*teste recursividade
+        if(contador!=numPs){
+            container();
+        }
+        
+        buttonNext.setText("Finalizar");
+        return;*/
+    }
+
+    private void setPergunta(String pergunta, String tipoPergunta){
+        this.pergunta = pergunta;
+        this.tipoPergunta = tipoPergunta;
     }
 
     private JPanel Painel0(){
@@ -53,17 +109,31 @@ public class GUI extends JFrame implements ActionListener {
         return painel0;
     }
     
-    private JPanel Painel1(){ // Pergunta e tipo de pergunta
+    private JPanel Painel1(String p, String tipoP){ // Pergunta e tipo de pergunta
         JPanel painel1 = new JPanel();
         painel1.setLayout(new GridLayout(3,1,5,5));
         painel1.setBorder(BorderFactory.createLineBorder(Color.RED));
 
         JLabel pergunta = new JLabel();
-        pergunta.setText("Pergunta xesq dele vrau ambicious?"); //pergunta 
+        pergunta.setText(p); //pergunta 
         pergunta.setHorizontalAlignment(JLabel.CENTER);
         pergunta.setBorder(BorderFactory.createLineBorder(Color.RED));
 
-        JLabel tipoPergunta = new JLabel("Pergunta de texto (T)"); //tipoPergunta if...
+        JLabel tipoPergunta = new JLabel(); //tipoPergunta if...
+        if (tipoP.equals("T")){
+            tipoPergunta.setText("Pergunta de Texto (T)");
+        }else
+        if (tipoP.equals("U")){
+            tipoPergunta.setText("Pergunta de Única Escolha (U)");
+        }else
+        if (tipoP.equals("M")){
+            tipoPergunta.setText("Pergunta de Múltipla Escolha (M)");
+        }else
+        if(tipoP.equals("N")){
+            tipoPergunta.setText("Pergunta Numérica (N)");
+        }
+
+
         tipoPergunta.setHorizontalAlignment(JLabel.CENTER);
         tipoPergunta.setBorder(BorderFactory.createLineBorder(Color.RED));
 
@@ -77,12 +147,8 @@ public class GUI extends JFrame implements ActionListener {
         return painel1;
     }
 
-    public void setPergunta(String pergunta, String tipoPergunta){
-        this.pergunta = pergunta;
-        this.tipoPergunta = tipoPergunta;
-    }
 
-    private JPanel Painel2(){
+    private JPanel Painel2(){ //Tipo T ou N
         JPanel painel2 = new JPanel();
         //painel2.setLayout(new GridLayout(1,3,5,5));
         painel2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -90,7 +156,7 @@ public class GUI extends JFrame implements ActionListener {
         JLabel tipoTN = new JLabel("(T/N) Texto ou Numérico: ");
         tipoTN.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        JTextField resposta = new JTextField();
+        resposta = new JTextField();
         resposta.setColumns(40);
         //resposta.setBounds(50, 50, 100, 90);
         //resposta.addActionListener(this);
@@ -102,17 +168,17 @@ public class GUI extends JFrame implements ActionListener {
         return painel2;
     }
 
-    private JPanel Painel3(){
+    private JPanel Painel3(ArrayList<String> alts){ //Tipo U
         JPanel painel3 = new JPanel();
         //painel3.setLayout(new GridLayout(1,6,5,5));
         painel3.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         JLabel tipoU = new JLabel("(U) Única escolha: ");
         tipoU.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        JRadioButton resposta1 = new JRadioButton("Resposta 1");
-        JRadioButton resposta2 = new JRadioButton("Resposta 2");
-        JRadioButton resposta3 = new JRadioButton("Resposta 3");
-        JRadioButton resposta4 = new JRadioButton("Resposta 4");
+        resposta1 = new JRadioButton(alts.get(0));
+        resposta2 = new JRadioButton(alts.get(1));
+        resposta3 = new JRadioButton(alts.get(2));
+        resposta4 = new JRadioButton(alts.get(3));
         resposta1.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         resposta2.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         resposta3.setBorder(BorderFactory.createLineBorder(Color.BLUE));
@@ -136,27 +202,30 @@ public class GUI extends JFrame implements ActionListener {
         return painel3;
     }
 
-    private JPanel Painel4(){
+    private JPanel Painel4(){ //Tipo M
         JPanel painel4 = new JPanel();
         //painel4.setLayout(new GridLayout(1,6,5,5));
         painel4.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 
         JLabel tipoM = new JLabel("(M) Múltipla escolha: ");
         tipoM.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-        JCheckBox checkbox1 = new JCheckBox("Resposta 1");
-        JCheckBox checkbox2 = new JCheckBox("Resposta 2");
-        JCheckBox checkbox3 = new JCheckBox("Resposta 3");
-        JCheckBox checkbox4 = new JCheckBox("Resposta 4");
+        checkbox1 = new JCheckBox("Resposta 1");
+        checkbox2 = new JCheckBox("Resposta 2");
+        checkbox3 = new JCheckBox("Resposta 3");
+        checkbox4 = new JCheckBox("Resposta 4");
+        checkbox5 = new JCheckBox("Resposta 5");
         checkbox1.setBorder(BorderFactory.createLineBorder(Color.GREEN));
         checkbox2.setBorder(BorderFactory.createLineBorder(Color.GREEN));
         checkbox3.setBorder(BorderFactory.createLineBorder(Color.GREEN));
         checkbox4.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+
 
         painel4.add(tipoM);
         painel4.add(checkbox1);
         painel4.add(checkbox2);
         painel4.add(checkbox3);
         painel4.add(checkbox4);
+        painel4.add(checkbox5);
 
         return painel4;
     }
@@ -173,6 +242,9 @@ public class GUI extends JFrame implements ActionListener {
         
         //painel5_1.add(new JLabel("Resposta correta: "));
         painel5.add(painel5_1);
+        Gabarito();
+        painel5.add(resp);
+        painel5.add(hitOrMiss);
         painel5_2.add(buttonResp);
         painel5_2.add(buttonNext);
         painel5.add(painel5_2);
@@ -180,23 +252,28 @@ public class GUI extends JFrame implements ActionListener {
         return painel5;
     }
 
+    private void Gabarito(){
+        resp = new JLabel(" ");
+        hitOrMiss = new JLabel(" ");
+    }
+
     private void Botoes(){ //Botões
         buttonResp = new JButton("Verificar Resposta");
         buttonResp.addActionListener(this);
         buttonResp.setMnemonic(KeyEvent.VK_ENTER);
-        buttonResp.setActionCommand("disable");
+        buttonResp.setActionCommand("verificar");
 
         buttonNext = new JButton("Próxima Pergunta");
         buttonNext.addActionListener(this);
         buttonNext.setMnemonic(KeyEvent.VK_ENTER);
-        buttonNext.setActionCommand("enable");
+        buttonNext.setActionCommand("proxima");
         buttonNext.setEnabled(false);
     }
 
 
     private void Questionario(){
-        ArrayList<Pergunta> perguntas = new ArrayList<>();        
-        ArrayList<String> tipoPerguntas = new ArrayList<>();        
+        perguntas = new ArrayList<>();        
+        tipoPerguntas = new ArrayList<>();        
 
         File questionario = new File("questionario.txt");
         Scanner user = new Scanner(System.in);
@@ -212,6 +289,7 @@ public class GUI extends JFrame implements ActionListener {
                     tipoPerguntas.add(data);
                     PerguntaT perguntaT = new PerguntaT(sc.nextLine(), sc.nextLine());
                     perguntas.add(perguntaT);
+                    numPs++;
                 }
 
                 if (data.compareTo("U") == 0) {
@@ -219,22 +297,21 @@ public class GUI extends JFrame implements ActionListener {
                     tipoPerguntas.add(data);
                     String p = sc.nextLine();
                     String  r="";
-                    String[] a = new String[3];
-                    data = sc.nextLine();
+                    ArrayList<String> aU = new ArrayList<String>();
                     for (int i = 0; i < 4; i++) {
+                        data = sc.nextLine();
                         
                         if (data.startsWith("+")){
                             r = data.substring(2);
+                            aU.add(data.substring(2));
                         }
                         if (data.startsWith("-")){
-                            a[i] = data.substring(2);
+                            aU.add(data.substring(2));
                         }
                     }
-                    data = sc.nextLine();
-
-                    PerguntaU perguntaU = new PerguntaU(p, r, a[1], a[2], a[3]);
+                    PerguntaU perguntaU = new PerguntaU(p, r, aU.get(0), aU.get(1), aU.get(2));
                     perguntas.add(perguntaU);
-
+                    numPs++;
                 }
 
                 //if para outras perguntas
@@ -253,12 +330,40 @@ public class GUI extends JFrame implements ActionListener {
 
 
     public void actionPerformed(ActionEvent event) {
-        if ("disable".equals(event.getActionCommand())) {
+
+        if ("verificar".equals(event.getActionCommand())) {
+            if(tipoPergunta.compareTo("T") == 0){ 
+                if(resposta.getText().compareTo(perguntas.get(contador).getResposta()) == 0){
+                    hitOrMiss.setText("Resposta Correta!");
+                    resp.setText("Resposta: " + perguntas.get(contador).getResposta());
+                    acertos++;
+                }else{
+                    hitOrMiss.setText("Resposta Errada!");
+                    resp.setText("Resposta: " + perguntas.get(contador).getResposta());
+                }
+            }
+
+            if(tipoPergunta.compareTo("U") == 0) {
+
+            }
+            
+            
+            
+            buttonResp.setEnabled(false);
             buttonNext.setEnabled(true);
-        } else {
-            buttonResp.setEnabled(true);
-            buttonNext.setEnabled(false);
         }
+
+        if("proxima".equals(event.getActionCommand())){
+            contador++;
+            if(contador == numPs-1){
+                buttonNext.setText("Finalizar");
+            }
+            if(contador == numPs){
+                JOptionPane.showMessageDialog(null, "Você acertou " + acertos + " de " + numPs + " perguntas!");
+                System.exit(0);
+            }
+        }
+
     }
 
     public static void main(String[] args) {

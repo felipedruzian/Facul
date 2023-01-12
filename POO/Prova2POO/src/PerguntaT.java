@@ -2,8 +2,7 @@
 
 public class PerguntaT extends Pergunta{
 
-    private String resposta;
-
+    
     PerguntaT(String pergunta, String resposta){
         this.pergunta = pergunta;
         this.resposta = resposta;
@@ -13,7 +12,5 @@ public class PerguntaT extends Pergunta{
         this.resposta = resposta;
     }*/
 
-    public String getResposta(){
-        return resposta;
-    }
+    
 }

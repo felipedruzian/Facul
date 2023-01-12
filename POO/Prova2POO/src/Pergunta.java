@@ -3,8 +3,14 @@
 abstract public class Pergunta {
 
     protected String pergunta;
+    protected String resposta;
+
 
     public String getPergunta(){
         return pergunta;
+    }
+
+    public String getResposta(){
+        return resposta;
     }
 }
