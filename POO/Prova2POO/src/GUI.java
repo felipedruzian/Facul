@@ -13,7 +13,13 @@ public class GUI extends JFrame implements ActionListener {
 
     //Locale localeBr = new Locale("pt", "BR");
     
-    private Container container;
+    private Container janela;
+    private JPanel container;
+    private CardLayout cardLayout;
+    private JPanel cardTN;
+    private JPanel cardU;
+    //private JPanel cardM;
+    private GridLayout gridLayout;
 
     private JTextField resposta;
     private JRadioButton resposta1;
@@ -43,29 +49,59 @@ public class GUI extends JFrame implements ActionListener {
 
     public GUI(){
         //Janela
-        container = getContentPane();
+        janela = getContentPane();
         setSize(600,400);
         setResizable(false);
         setTitle("Questionário Java - Prova 2 POO");
+        //janela.setLayout(new BoxLayout(janela, BoxLayout.Y_AXIS));
         
-        //FlowLayout flowLayout = new FlowLayout();
-        GridLayout gridLayout = new GridLayout(5,1,150,10);
-        container.setLayout(gridLayout);
-
         Questionario();
 
+        
+
+        //cardM = new JPanel(new GridLayout(5,1,10,10));
+        //container.setLayout(gridLayout);
+        
+        setPergunta(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador));
         //Adicionando os painéis ao container //ifs para cada painel
         container();
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //janela.add(container);
     }
 
    
     private void container(){
 
-        setPergunta(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador));
+        gridLayout = new GridLayout(5,1,10,10);
+        
+        cardLayout = new CardLayout();
+        container = new JPanel(cardLayout);
 
-        container.add(Painel0());
+        cardTN = new JPanel(gridLayout);
+        cardTN.add(Painel0());
+        cardTN.add(Painel1(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador)));
+        cardTN.add(Painel0());
+        cardTN.add(Painel2());
+        cardTN.add(Painel5());
+        container.add(cardTN, "T/N");
+
+        cardU = new JPanel(gridLayout);
+        cardU.add(Painel0());
+        cardU.add(Painel1(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador)));
+        cardU.add(Painel0());
+        cardU.add(Painel3(aU));
+        cardU.add(Painel5());
+        container.add(cardU, "U");
+
+        
+
+        if (tipoPergunta.compareTo("T")==0){
+            cardLayout.show(container, "T/N");
+        }else if(tipoPergunta.compareTo("U")==0){
+            cardLayout.show(container, "U");
+        }
+        janela.add(container);
+
+        /*container.add(Painel0());
         container.add(Painel1(pergunta, tipoPergunta)); 
         container.add(Painel0());
 
@@ -97,12 +133,12 @@ public class GUI extends JFrame implements ActionListener {
     private JPanel Painel0(){
         JPanel painel0 = new JPanel();
         painel0.setLayout(new GridLayout(1,1,5,5));
-        painel0.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        //painel0.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
         JLabel espaco = new JLabel("  ");
-        JLabel tab = new JLabel("    ");
-        espaco.setBorder(BorderFactory.createLineBorder(Color.PINK));
-        tab.setBorder(BorderFactory.createLineBorder(Color.cyan));
+        //JLabel tab = new JLabel("    ");
+        //espaco.setBorder(BorderFactory.createLineBorder(Color.PINK));
+        //tab.setBorder(BorderFactory.createLineBorder(Color.cyan));
 
         painel0.add(espaco);
 
@@ -110,14 +146,15 @@ public class GUI extends JFrame implements ActionListener {
     }
     
     private JPanel Painel1(String p, String tipoP){ // Pergunta e tipo de pergunta
+
         JPanel painel1 = new JPanel();
         painel1.setLayout(new GridLayout(3,1,5,5));
-        painel1.setBorder(BorderFactory.createLineBorder(Color.RED));
+        //painel1.setBorder(BorderFactory.createLineBorder(Color.RED));
 
         JLabel pergunta = new JLabel();
         pergunta.setText(p); //pergunta 
         pergunta.setHorizontalAlignment(JLabel.CENTER);
-        pergunta.setBorder(BorderFactory.createLineBorder(Color.RED));
+        //pergunta.setBorder(BorderFactory.createLineBorder(Color.RED));
 
         JLabel tipoPergunta = new JLabel(); //tipoPergunta if...
         if (tipoP.equals("T")){
@@ -135,10 +172,10 @@ public class GUI extends JFrame implements ActionListener {
 
 
         tipoPergunta.setHorizontalAlignment(JLabel.CENTER);
-        tipoPergunta.setBorder(BorderFactory.createLineBorder(Color.RED));
+        //tipoPergunta.setBorder(BorderFactory.createLineBorder(Color.RED));
 
         JLabel tab = new JLabel("    ");
-        tab.setBorder(BorderFactory.createLineBorder(Color.cyan));
+        //tab.setBorder(BorderFactory.createLineBorder(Color.cyan));
 
         painel1.add(tipoPergunta);
         painel1.add(tab);
@@ -151,10 +188,10 @@ public class GUI extends JFrame implements ActionListener {
     private JPanel Painel2(){ //Tipo T ou N
         JPanel painel2 = new JPanel();
         //painel2.setLayout(new GridLayout(1,3,5,5));
-        painel2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //painel2.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         JLabel tipoTN = new JLabel("(T/N) Texto ou Numérico: ");
-        tipoTN.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //tipoTN.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         resposta = new JTextField();
         resposta.setColumns(40);
@@ -171,18 +208,18 @@ public class GUI extends JFrame implements ActionListener {
     private JPanel Painel3(ArrayList<String> alts){ //Tipo U
         JPanel painel3 = new JPanel();
         //painel3.setLayout(new GridLayout(1,6,5,5));
-        painel3.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        //painel3.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         JLabel tipoU = new JLabel("(U) Única escolha: ");
-        tipoU.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        //tipoU.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         resposta1 = new JRadioButton(alts.get(0));
         resposta2 = new JRadioButton(alts.get(1));
         resposta3 = new JRadioButton(alts.get(2));
         resposta4 = new JRadioButton(alts.get(3));
-        resposta1.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        resposta2.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        resposta3.setBorder(BorderFactory.createLineBorder(Color.BLUE));
-        resposta4.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        //resposta1.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        //resposta2.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        //resposta3.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        //resposta4.setBorder(BorderFactory.createLineBorder(Color.BLUE));
         ButtonGroup bg=new ButtonGroup();
         bg.add(resposta1);
         bg.add(resposta2);
@@ -190,7 +227,7 @@ public class GUI extends JFrame implements ActionListener {
         bg.add(resposta4);
 
         JLabel espaco = new JLabel("  ");
-        espaco.setBorder(BorderFactory.createLineBorder(Color.PINK));
+        //espaco.setBorder(BorderFactory.createLineBorder(Color.PINK));
 
         painel3.add(tipoU);
         painel3.add(espaco);
@@ -205,19 +242,19 @@ public class GUI extends JFrame implements ActionListener {
     private JPanel Painel4(){ //Tipo M
         JPanel painel4 = new JPanel();
         //painel4.setLayout(new GridLayout(1,6,5,5));
-        painel4.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+        //painel4.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 
         JLabel tipoM = new JLabel("(M) Múltipla escolha: ");
-        tipoM.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        //tipoM.setBorder(BorderFactory.createLineBorder(Color.GREEN));
         checkbox1 = new JCheckBox("Resposta 1");
         checkbox2 = new JCheckBox("Resposta 2");
         checkbox3 = new JCheckBox("Resposta 3");
         checkbox4 = new JCheckBox("Resposta 4");
         checkbox5 = new JCheckBox("Resposta 5");
-        checkbox1.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-        checkbox2.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-        checkbox3.setBorder(BorderFactory.createLineBorder(Color.GREEN));
-        checkbox4.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        //checkbox1.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        //checkbox2.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        //checkbox3.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        //checkbox4.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
 
         painel4.add(tipoM);
@@ -233,7 +270,7 @@ public class GUI extends JFrame implements ActionListener {
     private JPanel Painel5(){ //Resposta correta e Botoes
         JPanel painel5 = new JPanel();
         painel5.setLayout(new GridLayout(1,2,5,5));
-        painel5.setBorder(BorderFactory.createLineBorder(Color.PINK));
+        //painel5.setBorder(BorderFactory.createLineBorder(Color.PINK));
 
         JPanel painel5_1 = new JPanel();
         JPanel painel5_2 = new JPanel();
@@ -263,11 +300,12 @@ public class GUI extends JFrame implements ActionListener {
         buttonResp.setMnemonic(KeyEvent.VK_ENTER);
         buttonResp.setActionCommand("verificar");
 
+        
         buttonNext = new JButton("Próxima Pergunta");
         buttonNext.addActionListener(this);
         buttonNext.setMnemonic(KeyEvent.VK_ENTER);
         buttonNext.setActionCommand("proxima");
-        buttonNext.setEnabled(false);
+        //buttonNext.setEnabled(false);
     }
 
 
@@ -287,7 +325,9 @@ public class GUI extends JFrame implements ActionListener {
                 if (data.compareTo("T") == 0) { //if para pergunta tipo T
 
                     tipoPerguntas.add(data);
-                    PerguntaT perguntaT = new PerguntaT(sc.nextLine(), sc.nextLine());
+                    data = sc.nextLine();
+                    String r = sc.nextLine();
+                    PerguntaT perguntaT = new PerguntaT(data, r);
                     perguntas.add(perguntaT);
                     numPs++;
                 }
@@ -297,7 +337,7 @@ public class GUI extends JFrame implements ActionListener {
                     tipoPerguntas.add(data);
                     String p = sc.nextLine();
                     String  r="";
-                    ArrayList<String> aU = new ArrayList<String>();
+                    aU = new ArrayList<String>();
                     for (int i = 0; i < 4; i++) {
                         data = sc.nextLine();
                         
@@ -341,25 +381,38 @@ public class GUI extends JFrame implements ActionListener {
                     hitOrMiss.setText("Resposta Errada!");
                     resp.setText("Resposta: " + perguntas.get(contador).getResposta());
                 }
+                container.revalidate();
+                cardLayout.show(container, "T/N");
+                
             }
 
             if(tipoPergunta.compareTo("U") == 0) {
-
+                
             }
-            
-            
             
             buttonResp.setEnabled(false);
             buttonNext.setEnabled(true);
         }
 
+
         if("proxima".equals(event.getActionCommand())){
             contador++;
+
+            setPergunta(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador));
+            
+            
+            if (tipoPergunta.equals("T")){
+                cardLayout.show(container, "T/N");
+            }else if(tipoPergunta.equals("U")){
+                cardLayout.show(container, "U");
+            }
+            
+            
             if(contador == numPs-1){
-                buttonNext.setText("Finalizar");
+            buttonNext.setText("Finalizar");
             }
             if(contador == numPs){
-                JOptionPane.showMessageDialog(null, "Você acertou " + acertos + " de " + numPs + " perguntas!");
+                JOptionPane.showMessageDialog(null, "Você /acertou " + acertos + " de " + numPs + " perguntas!");
                 System.exit(0);
             }
         }
@@ -369,5 +422,7 @@ public class GUI extends JFrame implements ActionListener {
     public static void main(String[] args) {
         GUI app = new GUI();
         app.setLocationRelativeTo(null);
+        app.setVisible(true);
+        app.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 }

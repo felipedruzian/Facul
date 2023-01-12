@@ -2,8 +2,7 @@
 
 public class PerguntaT extends Pergunta{
 
-    
-    PerguntaT(String pergunta, String resposta){
+    public PerguntaT(String pergunta, String resposta){
         this.pergunta = pergunta;
         this.resposta = resposta;
     }
