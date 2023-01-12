@@ -1,0 +1,21 @@
+T
+Qual palavra reservada Java é usada para declarar uma subclasse?
+extends
+U
+Qual é o nome original da linguagem Java?
+- *7
+- C--
++ Oak
+- Gosling
+
+M
+Quais dos seguintes tipos são supertipos de Rectangle?
+- PrintStream
++ Shape
++ RectangularShape
++ Object
+- String
+
+N
+Qual é a raiz quadrada de 2?
+1.41421356
