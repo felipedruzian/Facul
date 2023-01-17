@@ -76,23 +76,7 @@ public class GUI extends JFrame implements ActionListener {
         cardLayout = new CardLayout();
         container = new JPanel(cardLayout);
 
-        cardTN = new JPanel(gridLayout);
-        cardTN.add(Painel0());
-        cardTN.add(Painel1(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador)));
-        cardTN.add(Painel0());
-        cardTN.add(Painel2());
-        cardTN.add(Painel5());
-        container.add(cardTN, "T/N");
-
-        cardU = new JPanel(gridLayout);
-        cardU.add(Painel0());
-        cardU.add(Painel1(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador)));
-        cardU.add(Painel0());
-        cardU.add(Painel3(aU));
-        cardU.add(Painel5());
-        container.add(cardU, "U");
-
-        
+        refreshCards();
 
         if (tipoPergunta.compareTo("T")==0){
             cardLayout.show(container, "T/N");
@@ -100,29 +84,31 @@ public class GUI extends JFrame implements ActionListener {
             cardLayout.show(container, "U");
         }
         janela.add(container);
+    }
 
-        /*container.add(Painel0());
-        container.add(Painel1(pergunta, tipoPergunta)); 
-        container.add(Painel0());
+    private void refreshCards(){
+        JCardTN();
+        JCardU();
+    }
 
-        if(tipoPergunta.equals("T")){
-            container.add(Painel2());
-        }
-        if(tipoPergunta.equals("U")){
-            container.add(Painel3(aU));
-        }
+    private void JCardTN(){
+        cardTN = new JPanel(gridLayout);
+        cardTN.add(Painel0());
+        cardTN.add(Painel1(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador)));
+        cardTN.add(Painel0());
+        cardTN.add(Painel2());
+        cardTN.add(Painel5());
+        container.add(cardTN, "T/N");
+    }
 
-        container.add(Painel5());
-        //contador++;
-
-
-        /*teste recursividade
-        if(contador!=numPs){
-            container();
-        }
-        
-        buttonNext.setText("Finalizar");
-        return;*/
+    private void JCardU(){
+        cardU = new JPanel(gridLayout);
+        cardU.add(Painel0());
+        cardU.add(Painel1(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador)));
+        cardU.add(Painel0());
+        cardU.add(Painel3(aU));
+        cardU.add(Painel5());
+        container.add(cardU, "U");
     }
 
     private void setPergunta(String pergunta, String tipoPergunta){
@@ -296,15 +282,68 @@ public class GUI extends JFrame implements ActionListener {
 
     private void Botoes(){ //Botões
         buttonResp = new JButton("Verificar Resposta");
-        buttonResp.addActionListener(this);
-        buttonResp.setMnemonic(KeyEvent.VK_ENTER);
-        buttonResp.setActionCommand("verificar");
+        buttonResp.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                //if ("verificar".equals(event.getActionCommand())) 
+                if(tipoPerguntas.get(contador).compareTo("T") == 0){ 
+                    if(resposta.getText().compareTo(perguntas.get(contador).getResposta()) == 0){
+                        hitOrMiss.setText("Resposta Correta!");
+                        resp.setText("Resposta: " + perguntas.get(contador).getResposta());
+                        acertos++;
+                    }else{
+                        hitOrMiss.setText("Resposta Errada!");
+                        resp.setText("Resposta: " + perguntas.get(contador).getResposta());
+                    }
+                    container.revalidate();
+                    //container();
+                    //refreshCards();
+                    //cardLayout.show(container, "T/N");
+                        
+                }
+                    
+                if(tipoPerguntas.get(contador).compareTo("U") == 0) {
+                        
+                }
+                
+                buttonResp.setEnabled(false);
+                buttonNext.setEnabled(true);
+                //}
+            }
+        });
+        //buttonResp.setMnemonic(KeyEvent.VK_ENTER);
+        //buttonResp.setActionCommand("verificar");
 
         
         buttonNext = new JButton("Próxima Pergunta");
-        buttonNext.addActionListener(this);
-        buttonNext.setMnemonic(KeyEvent.VK_ENTER);
-        buttonNext.setActionCommand("proxima");
+        buttonNext.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //if("proxima".equals(e.getActionCommand())){
+                    contador++;
+        
+                    //setPergunta(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador));
+
+                    if(contador == numPs-1){
+                    buttonNext.setText("Finalizar");
+                    }
+                    if(contador == numPs){
+                        JOptionPane.showMessageDialog(null, "Você acertou " + acertos + " de " + numPs + " perguntas!");
+                        System.exit(0);
+                    }
+                    
+                    if (tipoPerguntas.get(contador).equals("T")){
+                        cardLayout.show(container, "T/N");
+                    }else if(tipoPerguntas.get(contador).equals("U")){
+                        cardLayout.show(container, "U");
+                    }
+                    
+                //}
+            }
+        });
+        //buttonNext.setMnemonic(KeyEvent.VK_ENTER);
+        //buttonNext.setActionCommand("proxima");
         //buttonNext.setEnabled(false);
     }
 
@@ -371,54 +410,14 @@ public class GUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
 
-        if ("verificar".equals(event.getActionCommand())) {
-            if(tipoPergunta.compareTo("T") == 0){ 
-                if(resposta.getText().compareTo(perguntas.get(contador).getResposta()) == 0){
-                    hitOrMiss.setText("Resposta Correta!");
-                    resp.setText("Resposta: " + perguntas.get(contador).getResposta());
-                    acertos++;
-                }else{
-                    hitOrMiss.setText("Resposta Errada!");
-                    resp.setText("Resposta: " + perguntas.get(contador).getResposta());
-                }
-                container.revalidate();
-                cardLayout.show(container, "T/N");
-                
-            }
-
-            if(tipoPergunta.compareTo("U") == 0) {
-                
-            }
-            
-            buttonResp.setEnabled(false);
-            buttonNext.setEnabled(true);
-        }
+        
 
 
-        if("proxima".equals(event.getActionCommand())){
-            contador++;
-
-            setPergunta(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador));
-            
-            
-            if (tipoPergunta.equals("T")){
-                cardLayout.show(container, "T/N");
-            }else if(tipoPergunta.equals("U")){
-                cardLayout.show(container, "U");
-            }
-            
-            
-            if(contador == numPs-1){
-            buttonNext.setText("Finalizar");
-            }
-            if(contador == numPs){
-                JOptionPane.showMessageDialog(null, "Você /acertou " + acertos + " de " + numPs + " perguntas!");
-                System.exit(0);
-            }
-        }
+        
 
     }
 
+    
     public static void main(String[] args) {
         GUI app = new GUI();
         app.setLocationRelativeTo(null);
