@@ -53,6 +53,7 @@ public class GUI extends JFrame implements ActionListener {
         setSize(600,400);
         setResizable(false);
         setTitle("Questionário Java - Prova 2 POO");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         questionario();
         montaPaineis();
@@ -387,12 +388,8 @@ public class GUI extends JFrame implements ActionListener {
     }
 
 
-    public void actionPerformed(ActionEvent event) { }
+    public void actionPerformed(ActionEvent event) { 
 
-    public static void main(String[] args) {
-        GUI app = new GUI();
-        app.setLocationRelativeTo(null);
-        app.setVisible(true);
-        app.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+
 }
