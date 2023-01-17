@@ -4,6 +4,7 @@ abstract public class Pergunta {
 
     protected String pergunta;
     protected String resposta;
+    protected int indice;
 
 
     public String getPergunta(){
@@ -12,5 +13,9 @@ abstract public class Pergunta {
 
     public String getResposta(){
         return resposta;
+    }
+
+    public int getIndice() {
+        return indice;
     }
 }

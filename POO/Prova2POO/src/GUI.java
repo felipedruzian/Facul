@@ -279,7 +279,26 @@ public class GUI extends JFrame implements ActionListener {
                 }
                     
                 if(tipoPerguntas.get(contador).compareTo("U") == 0) {
-                        
+                    if(resposta1.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(perguntas.get(contador).getIndice())) == 0){
+                        hitOrMiss.setText("Resposta Correta!");
+                        resp.setText("Resposta: " + perguntas.get(contador).getResposta());
+                        acertos++;
+                    }else if(resposta2.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(perguntas.get(contador).getIndice())) == 0){
+                        hitOrMiss.setText("Resposta Correta!");
+                        resp.setText("Resposta: " + perguntas.get(contador).getResposta());
+                        acertos++;
+                    }else if(resposta3.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(perguntas.get(contador).getIndice())) == 0){
+                        hitOrMiss.setText("Resposta Correta!");
+                        resp.setText("Resposta: " + perguntas.get(contador).getResposta());
+                        acertos++;
+                    }else if(resposta4.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(perguntas.get(contador).getIndice())) == 0){
+                        hitOrMiss.setText("Resposta Correta!");
+                        resp.setText("Resposta: " + perguntas.get(contador).getResposta());
+                        acertos++;
+                    }else{
+                        hitOrMiss.setText("Resposta Errada!");
+                        resp.setText("Resposta: " + perguntas.get(contador).getResposta());
+                    }
                 }
                 
                 buttonResp.setEnabled(false);
@@ -344,6 +363,7 @@ public class GUI extends JFrame implements ActionListener {
                     tipoPerguntas.add(data);
                     String p = sc.nextLine();
                     String  r="";
+                    int n=0;
                     aU = new ArrayList<String>();
                     for (int i = 0; i < 4; i++) {
                         data = sc.nextLine();
@@ -351,12 +371,13 @@ public class GUI extends JFrame implements ActionListener {
                         if (data.startsWith("+")){
                             r = data.substring(2);
                             aU.add(data.substring(2));
+                            n=i;
                         }
                         if (data.startsWith("-")){
                             aU.add(data.substring(2));
                         }
                     }
-                    PerguntaU perguntaU = new PerguntaU(p, r, aU.get(0), aU.get(1), aU.get(2));
+                    PerguntaU perguntaU = new PerguntaU(p, r, aU.get(0), aU.get(1), aU.get(2), n);
                     perguntas.add(perguntaU);
                     numPs++;
                 }
