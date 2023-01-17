@@ -290,7 +290,7 @@ void InitialiseTimer1()
 
 volatile int counter = 0;
 
-ISR(TIMER1_OVF_vect)                              //interrupção do TIMER1 
+ISR(TIMER1_OVF_vect)   //interrupção do TIMER1 
 {
     //------SEM PRESCALER
     if(counter == 245){
