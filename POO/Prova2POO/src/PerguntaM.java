@@ -1,4 +1,5 @@
 // Felipe Barreto Druzian - Prova 2 de POO - EC UNIPAMPA BAGE 2022/2
+import java.util.ArrayList;
 
 public class PerguntaM extends Pergunta{
     private String[] alternativas;
