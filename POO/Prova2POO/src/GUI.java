@@ -14,12 +14,15 @@ public class GUI extends JFrame implements ActionListener {
     //Locale localeBr = new Locale("pt", "BR");
     
     private Container janela;
-    private JPanel container;
-    private CardLayout cardLayout;
-    private JPanel cardTN;
-    private JPanel cardU;
-    //private JPanel cardM;
     private GridLayout gridLayout;
+    
+    private JPanel p0_1;
+    private JPanel p0_2;
+    private JPanel p1;
+    private JPanel p2;
+    private JPanel p3;
+    private JPanel p4;
+    private JPanel p5;
 
     private JTextField resposta;
     private JRadioButton resposta1;
@@ -40,80 +43,72 @@ public class GUI extends JFrame implements ActionListener {
     private ArrayList<Pergunta> perguntas;
     private ArrayList<String> tipoPerguntas;
     private ArrayList<String> aU;
-    private String pergunta="";
-    private String tipoPergunta="";
     private int contador=0;
     private int numPs=0;
     private int acertos=0;
 
 
     public GUI(){
-        //Janela
         janela = getContentPane();
         setSize(600,400);
         setResizable(false);
         setTitle("Questionário Java - Prova 2 POO");
-        //janela.setLayout(new BoxLayout(janela, BoxLayout.Y_AXIS));
         
         Questionario();
 
         
 
-        //cardM = new JPanel(new GridLayout(5,1,10,10));
-        //container.setLayout(gridLayout);
         
-        setPergunta(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador));
-        //Adicionando os painéis ao container //ifs para cada painel
+        montaPaineis();
         container();
-        //janela.add(container);
+
     }
 
+    private void montaPaineis(){
+        p0_1 = Painel0();
+        p0_2 = Painel0();
+        p1 = Painel1(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador));
+
+        p2 = Painel2();
+        p3 = Painel3(aU);
+        p4 = Painel4();
+
+        p5 = Painel5(); 
+    }
    
+    private void montaJanela(){
+
+    }
+
     private void container(){
 
         gridLayout = new GridLayout(5,1,10,10);
+        //cardLayout = new CardLayout();
+        //container = new JPanel(gridLayout);
+        janela.setLayout(gridLayout);
         
-        cardLayout = new CardLayout();
-        container = new JPanel(cardLayout);
-
-        refreshCards();
-
-        if (tipoPergunta.compareTo("T")==0){
-            cardLayout.show(container, "T/N");
-        }else if(tipoPergunta.compareTo("U")==0){
-            cardLayout.show(container, "U");
+        janela.removeAll();
+        if (tipoPerguntas.get(contador).compareTo("T")==0){
+            janela.add(p0_1);
+            janela.add(p1);
+            janela.add(p0_2);
+            janela.add(p2);
+            janela.add(p5);
         }
-        janela.add(container);
-    }
-
-    private void refreshCards(){
-        JCardTN();
-        JCardU();
-    }
-
-    private void JCardTN(){
-        cardTN = new JPanel(gridLayout);
-        cardTN.add(Painel0());
-        cardTN.add(Painel1(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador)));
-        cardTN.add(Painel0());
-        cardTN.add(Painel2());
-        cardTN.add(Painel5());
-        container.add(cardTN, "T/N");
-    }
-
-    private void JCardU(){
-        cardU = new JPanel(gridLayout);
-        cardU.add(Painel0());
-        cardU.add(Painel1(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador)));
-        cardU.add(Painel0());
-        cardU.add(Painel3(aU));
-        cardU.add(Painel5());
-        container.add(cardU, "U");
-    }
-
-    private void setPergunta(String pergunta, String tipoPergunta){
-        this.pergunta = pergunta;
-        this.tipoPergunta = tipoPergunta;
+        else if(tipoPerguntas.get(contador).compareTo("U")==0){
+            janela.add(p0_1);
+            janela.add(p1);
+            janela.add(p0_2);
+            janela.add(p3);
+            janela.add(p5);
+        }
+        else if(tipoPerguntas.get(contador).compareTo("M")==0){
+            janela.add(p0_1);
+            janela.add(p1);
+            janela.add(p0_2);
+            janela.add(p4);
+            janela.add(p5);
+        }
     }
 
     private JPanel Painel0(){
@@ -122,15 +117,12 @@ public class GUI extends JFrame implements ActionListener {
         //painel0.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
         JLabel espaco = new JLabel("  ");
-        //JLabel tab = new JLabel("    ");
         //espaco.setBorder(BorderFactory.createLineBorder(Color.PINK));
-        //tab.setBorder(BorderFactory.createLineBorder(Color.cyan));
 
         painel0.add(espaco);
-
         return painel0;
     }
-    
+
     private JPanel Painel1(String p, String tipoP){ // Pergunta e tipo de pergunta
 
         JPanel painel1 = new JPanel();
@@ -166,7 +158,6 @@ public class GUI extends JFrame implements ActionListener {
         painel1.add(tipoPergunta);
         painel1.add(tab);
         painel1.add(pergunta);
-
         return painel1;
     }
 
@@ -181,13 +172,9 @@ public class GUI extends JFrame implements ActionListener {
 
         resposta = new JTextField();
         resposta.setColumns(40);
-        //resposta.setBounds(50, 50, 100, 90);
-        //resposta.addActionListener(this);
-        //getText();???
         
         painel2.add(tipoTN);        
         painel2.add(resposta);
-
         return painel2;
     }
 
@@ -221,7 +208,6 @@ public class GUI extends JFrame implements ActionListener {
         painel3.add(resposta2);
         painel3.add(resposta3);
         painel3.add(resposta4);
-
         return painel3;
     }
 
@@ -242,14 +228,12 @@ public class GUI extends JFrame implements ActionListener {
         //checkbox3.setBorder(BorderFactory.createLineBorder(Color.GREEN));
         //checkbox4.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 
-
         painel4.add(tipoM);
         painel4.add(checkbox1);
         painel4.add(checkbox2);
         painel4.add(checkbox3);
         painel4.add(checkbox4);
         painel4.add(checkbox5);
-
         return painel4;
     }
 
@@ -262,16 +246,14 @@ public class GUI extends JFrame implements ActionListener {
         JPanel painel5_2 = new JPanel();
 
         Botoes();
-        
-        //painel5_1.add(new JLabel("Resposta correta: "));
-        painel5.add(painel5_1);
         Gabarito();
+        
+        painel5.add(painel5_1);
         painel5.add(resp);
         painel5.add(hitOrMiss);
         painel5_2.add(buttonResp);
         painel5_2.add(buttonNext);
         painel5.add(painel5_2);
-
         return painel5;
     }
 
@@ -285,8 +267,6 @@ public class GUI extends JFrame implements ActionListener {
         buttonResp.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                //if ("verificar".equals(event.getActionCommand())) 
                 if(tipoPerguntas.get(contador).compareTo("T") == 0){ 
                     if(resposta.getText().compareTo(perguntas.get(contador).getResposta()) == 0){
                         hitOrMiss.setText("Resposta Correta!");
@@ -296,11 +276,6 @@ public class GUI extends JFrame implements ActionListener {
                         hitOrMiss.setText("Resposta Errada!");
                         resp.setText("Resposta: " + perguntas.get(contador).getResposta());
                     }
-                    container.revalidate();
-                    //container();
-                    //refreshCards();
-                    //cardLayout.show(container, "T/N");
-                        
                 }
                     
                 if(tipoPerguntas.get(contador).compareTo("U") == 0) {
@@ -309,42 +284,35 @@ public class GUI extends JFrame implements ActionListener {
                 
                 buttonResp.setEnabled(false);
                 buttonNext.setEnabled(true);
-                //}
             }
         });
-        //buttonResp.setMnemonic(KeyEvent.VK_ENTER);
-        //buttonResp.setActionCommand("verificar");
 
         
         buttonNext = new JButton("Próxima Pergunta");
         buttonNext.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                //if("proxima".equals(e.getActionCommand())){
-                    contador++;
-        
-                    //setPergunta(perguntas.get(contador).getPergunta(), tipoPerguntas.get(contador));
+            
+                contador++;
 
-                    if(contador == numPs-1){
-                    buttonNext.setText("Finalizar");
-                    }
-                    if(contador == numPs){
-                        JOptionPane.showMessageDialog(null, "Você acertou " + acertos + " de " + numPs + " perguntas!");
-                        System.exit(0);
-                    }
-                    
-                    if (tipoPerguntas.get(contador).equals("T")){
-                        cardLayout.show(container, "T/N");
-                    }else if(tipoPerguntas.get(contador).equals("U")){
-                        cardLayout.show(container, "U");
-                    }
-                    
-                //}
+                if(contador == numPs-1){
+                buttonNext.setText("Finalizar");
+                }
+                if(contador == numPs){
+                    JOptionPane.showMessageDialog(null, "Você acertou " + acertos + " de " + numPs + " perguntas!");
+                    System.exit(0);
+                }
+                
+                if (tipoPerguntas.get(contador).equals("T")){
+                    montaPaineis();
+                    container();
+                }else if(tipoPerguntas.get(contador).equals("U")){
+                    montaPaineis();
+                    container();
+                }
             }
         });
-        //buttonNext.setMnemonic(KeyEvent.VK_ENTER);
-        //buttonNext.setActionCommand("proxima");
-        //buttonNext.setEnabled(false);
+
     }
 
 
@@ -407,17 +375,8 @@ public class GUI extends JFrame implements ActionListener {
     }
 
 
+    public void actionPerformed(ActionEvent event) { }
 
-    public void actionPerformed(ActionEvent event) {
-
-        
-
-
-        
-
-    }
-
-    
     public static void main(String[] args) {
         GUI app = new GUI();
         app.setLocationRelativeTo(null);
