@@ -54,14 +54,9 @@ public class GUI extends JFrame implements ActionListener {
         setResizable(false);
         setTitle("Questionário Java - Prova 2 POO");
         
-        Questionario();
-
-        
-
-        
+        questionario();
         montaPaineis();
-        container();
-
+        montaJanela();
     }
 
     private void montaPaineis(){
@@ -75,16 +70,12 @@ public class GUI extends JFrame implements ActionListener {
 
         p5 = Painel5(); 
     }
-   
+
     private void montaJanela(){
-
-    }
-
-    private void container(){
 
         gridLayout = new GridLayout(5,1,10,10);
         //cardLayout = new CardLayout();
-        //container = new JPanel(gridLayout);
+        //montaJanela = new JPanel(gridLayout);
         janela.setLayout(gridLayout);
         
         janela.removeAll();
@@ -324,10 +315,10 @@ public class GUI extends JFrame implements ActionListener {
                 
                 if (tipoPerguntas.get(contador).equals("T")){
                     montaPaineis();
-                    container();
+                    montaJanela();
                 }else if(tipoPerguntas.get(contador).equals("U")){
                     montaPaineis();
-                    container();
+                    montaJanela();
                 }
             }
         });
@@ -335,7 +326,7 @@ public class GUI extends JFrame implements ActionListener {
     }
 
 
-    private void Questionario(){
+    private void questionario(){
         perguntas = new ArrayList<>();        
         tipoPerguntas = new ArrayList<>();        
 
