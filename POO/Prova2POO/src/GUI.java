@@ -54,7 +54,11 @@ public class GUI extends JFrame implements ActionListener {
         setResizable(false);
         setTitle("Questionário Java - Prova 2 POO");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
+        gridLayout = new GridLayout(5,1,10,10);
+        //cardLayout = new CardLayout();
+        //montaJanela = new JPanel(gridLayout);
+        janela.setLayout(gridLayout);
+
         questionario();
         montaPaineis();
         montaJanela();
@@ -74,11 +78,6 @@ public class GUI extends JFrame implements ActionListener {
 
     private void montaJanela(){
 
-        gridLayout = new GridLayout(5,1,10,10);
-        //cardLayout = new CardLayout();
-        //montaJanela = new JPanel(gridLayout);
-        janela.setLayout(gridLayout);
-        
         janela.removeAll();
         if (tipoPerguntas.get(contador).compareTo("T")==0){
             janela.add(p0_1);
@@ -271,19 +270,19 @@ public class GUI extends JFrame implements ActionListener {
                 }
                     
                 if(tipoPerguntas.get(contador).compareTo("U") == 0) {
-                    if(resposta1.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(perguntas.get(contador).getIndice())) == 0){
+                    if(resposta1.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(0)) == 0){
                         hitOrMiss.setText("Resposta Correta!");
                         resp.setText("Resposta: " + perguntas.get(contador).getResposta());
                         acertos++;
-                    }else if(resposta2.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(perguntas.get(contador).getIndice())) == 0){
+                    }else if(resposta2.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(1)) == 0){
                         hitOrMiss.setText("Resposta Correta!");
                         resp.setText("Resposta: " + perguntas.get(contador).getResposta());
                         acertos++;
-                    }else if(resposta3.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(perguntas.get(contador).getIndice())) == 0){
+                    }else if(resposta3.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(2)) == 0){
                         hitOrMiss.setText("Resposta Correta!");
                         resp.setText("Resposta: " + perguntas.get(contador).getResposta());
                         acertos++;
-                    }else if(resposta4.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(perguntas.get(contador).getIndice())) == 0){
+                    }else if(resposta4.isSelected() && perguntas.get(contador).getResposta().compareTo(aU.get(3)) == 0){
                         hitOrMiss.setText("Resposta Correta!");
                         resp.setText("Resposta: " + perguntas.get(contador).getResposta());
                         acertos++;
@@ -292,6 +291,7 @@ public class GUI extends JFrame implements ActionListener {
                         resp.setText("Resposta: " + perguntas.get(contador).getResposta());
                     }
                 }
+                
                 
                 buttonResp.setEnabled(false);
                 buttonNext.setEnabled(true);
@@ -306,21 +306,18 @@ public class GUI extends JFrame implements ActionListener {
             
                 contador++;
 
-                if(contador == numPs-1){
-                buttonNext.setText("Finalizar");
-                }
                 if(contador == numPs){
                     JOptionPane.showMessageDialog(null, "Você acertou " + acertos + " de " + numPs + " perguntas!");
                     System.exit(0);
                 }
+
+                montaPaineis();
+                montaJanela();
                 
-                if (tipoPerguntas.get(contador).equals("T")){
-                    montaPaineis();
-                    montaJanela();
-                }else if(tipoPerguntas.get(contador).equals("U")){
-                    montaPaineis();
-                    montaJanela();
+                if(contador+1 == numPs){
+                    buttonNext.setText("Finalizar");
                 }
+                
             }
         });
 
