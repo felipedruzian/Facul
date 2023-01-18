@@ -100,6 +100,8 @@ public class GUI extends JFrame implements ActionListener {
             janela.add(p4);
             janela.add(p5);
         }
+        //janela.repaint();
+        janela.validate();
     }
 
     private JPanel Painel0(){
