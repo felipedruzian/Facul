@@ -9,4 +9,6 @@ Faculdade.workspace.code-workspace
 /POO/*/.vscode
 /POO/*/bin
 /POO/*/lib
+/POO/AVLTree
+/POO/BinaryTree
 /Microcontroladores/.vscode
