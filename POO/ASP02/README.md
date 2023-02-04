@@ -1,6 +1,5 @@
 Implementar a aplicação cujo esboço de projeto está apresentado/descrito no diagrama UML abaixo:
 
-![Alt text](uml.svg)
 <img src="uml.svg">
 
 - O diagrama de classes apresentado é um esboço e pode (talvez deva) ser complementado.
