@@ -1,11 +1,10 @@
 import java.util.LinkedList;
 
 public class CoinPouch extends BaseItem {
-    private LinkedList<Coin> coins;
+    private LinkedList<Coin> coins = new LinkedList<Coin>();
 
     public CoinPouch() {
         super("Pouch", 0.5f, 0.5f);
-        coins = new LinkedList<Coin>();
     }
 
     @Override
@@ -36,7 +35,11 @@ public class CoinPouch extends BaseItem {
 
     public void removeCoin(int quantity) {
         for (int i = 0; i < quantity; i++) {
-            coins.removeFirst();
+            coins.removeLast();
+            // if is empty
+            if (coins.isEmpty()) {
+                break;
+            }
         }
     }
 
