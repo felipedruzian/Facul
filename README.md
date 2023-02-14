@@ -1,11 +1,10 @@
 # Repositório da Faculdade
  Esse repositório é destinado aos códigos, projetos e trabalhos feitos por mim, durante a minha graduação de Engenharia de Computação.
 
- 📅 **Semestre atual:** ✅✅✅🔄⬛⬛⬛⬛⬛⬛ (4/10)
+ 📅 **Semestre atual:** ✅✅✅✅⬛⬛⬛⬛⬛⬛ (4/10)
 
  🔄 **Atualmente estudando:**
-* Programação Orientada a Objetos
-* Microcontroladores
+* Férias ⛱🏖🏝
    
  ✅ **Concluído:**
 * **Algoritmos e Programação:** (AlgeProg)
@@ -45,24 +44,39 @@
   * Construção de bibliotecas em linguagem de alto nível/TADs.
   
 * **Pesquisa e Classificação de Dados:** (PCD)
-  * Análise de algoritmos; Medidas de desempenho e Classes de complexidade
-  * Métodos de ordenação: Bubble Sort
-  * Selection Sort e Insertion Sort
-  * Shell Sort
-  * Merge Sort
-  * Quick Sort
-  * Heap Sort e filas de prioridade
-  * Ordenação em tempo linear (Conting Sort, Bucket Sort e Radix Sort)
-  * Pesquisa Sequencial e Pesquisa Binária
-  * Tabelas Hash
-  * Compressão de Dados: Huffman, LZ77 e LZ78
+  * Análise de algoritmos; Medidas de desempenho e Classes de complexidade.
+  * Métodos de ordenação: Bubble Sort.
+  * Selection Sort e Insertion Sort.
+  * Shell Sort.
+  * Merge Sort.
+  * Quick Sort.
+  * Heap Sort e filas de prioridade.
+  * Ordenação em tempo linear (Conting Sort, Bucket Sort e Radix Sort).
+  * Pesquisa Sequencial e Pesquisa Binária.
+  * Tabelas Hash.
+  * Compressão de Dados: Huffman, LZ77 e LZ78.
   
   
 * **Laboratório de Programação II:** (LabProg2)
-  * Ponteiros genéricos e estruturas genéricas
-  * Implementação de uma árvore AVL genérica
-  * Grafos: Algoritmos DFS e BFS
-  * Grafos: ordenação topológica e árvore de amplitude mínima (Kruskal e Prim)
-  * Grafos: algoritmos de menor caminho (Dijkstra)
+  * Ponteiros genéricos e estruturas genéricas.
+  * Implementação de uma árvore AVL genérica.
+  * Grafos: Algoritmos DFS e BFS.
+  * Grafos: ordenação topológica e árvore de amplitude mínima (Kruskal e Prim).
+  * Grafos: algoritmos de menor caminho (Dijkstra).
   * Criptografia: conceitos básicos, métodos.
 
+* **Programação Orientada a Objetos:** (POO)
+  * Conceitos Básicos sobre POO (e Java): classes, objetos, herança, encapsulamento, ocultação de informação e implementação.
+  * Introdução sobre modelagem OO com UML.
+  * Classes e Objetos - construtores, atributos, operações (de instância e de classe). 
+  * Tipos primitivos e por referência.
+  * Operações de acesso e de modificação (gets e sets). 
+  * Modificadores de acesso.
+  * Herança, polimorfismo, ligação dinâmica e interfaces.
+  * Tratamento de Exceções e aplicação com Estruturas de Dados em Java.
+  * API JAVA: Estruturas de Dados, Coleções e Genéricos. Classes Conteiner.
+  * Interface Gráfica com o Usuário; Programação Orientada a Eventos.
+  * Arquivos em Java.
+  * Programação Concorrente (multithreading).
+  * Tópicos de POO: padrões de projeto.
+  
