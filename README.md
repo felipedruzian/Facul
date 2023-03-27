@@ -1,10 +1,11 @@
 # Repositório da Faculdade
  Esse repositório é destinado aos códigos, projetos e trabalhos feitos por mim, durante a minha graduação de Engenharia de Computação.
 
- 📅 **Semestre atual:** ✅✅✅✅⬛⬛⬛⬛⬛⬛ (4/10)
+ 📅 **Semestre atual:** ✅✅✅✅🔄⬛⬛⬛⬛⬛ (4/10)
 
  🔄 **Atualmente estudando:**
-* Férias ⛱🏖🏝
+* Sistema Operacionais
+* Engenharia de Software
    
  ✅ **Concluído:**
 * **Algoritmos e Programação:** (AlgeProg)
